@@ -1,0 +1,179 @@
+.box {
+  width: 100%;
+  height: 100%;
+  min-width: 1260px;
+  min-height: 800px;
+  .container-box {
+    width: 100%;
+    height: 100%;
+    padding: 0 30px 0 151px;
+    box-sizing: border-box;
+    .top {
+      width: 100%;
+      padding-top: 26px;
+      display: flex;
+      padding-left: 28px;
+      box-sizing: border-box;
+      .name {
+        background: #ffffff;
+        border: 1px solid #d7d7d7;
+        width: 192px;
+        height: 28px;
+      }
+      p {
+        width: 64px;
+        height: 30px;
+        line-height: 30px;
+        text-align: left;
+        font-size: 12px;
+        color: #333333;
+      }
+      .time-block {
+        width: 148px;
+        height: 34px;
+        position: relative;
+        .start-time, .end-time {
+          width: 100%;
+          height: 34px;
+          line-height: 34px;
+          border: 1px solid #ccc;
+          box-sizing: border-box;
+          border-radius: 4px;
+          padding: 0 4px;
+        }
+        span {
+          width: 14px;
+          height: 14px;
+          position: absolute;
+          top: 8px;
+          right: 8px;
+          background: url("../img/icon_time.png") no-repeat;
+          background-size: 100%;
+        }
+      }
+
+      .location {
+        margin-right: 14px;
+        background: #fff;
+        border: 1px solid #d7d7d7;
+        height: 34px;
+      }
+      .bootstrap-select:not([class*=span]):not([class*=col-]):not([class*=form-control]):not(.input-group-btn) {
+        width: 88px;
+      }
+    }
+    .table {
+      border-left: 1px solid #d7d7d7;
+      width: calc(100% - 30px);
+      height: 444px;
+      margin-top: 12px;
+      margin-left: 29px;
+      .left {
+        width: 54px;
+        height: 100%;
+        border-top: 1px solid #d7d7d7;
+        border-bottom: 1px solid #d7d7d7;
+        background: #f8f8f8;
+        div {
+          opacity: 0.99;
+          font-size: 14px;
+          color: #999999;
+          height: 200px;
+          -webkit-box-sizing: border-box;
+          -moz-box-sizing: border-box;
+          box-sizing: border-box;
+          padding-top: 68px;
+          text-align: center;
+        }
+        div:last-child {
+          border-top: 1px solid #d7d7d7;
+        }
+      ;
+        div:first-child {
+          width: 100%;
+          height: 40px;
+          padding: 0;
+          background: rgba(56, 108, 153, 0.20);
+        }
+      }
+      .right {
+        width: calc(100% - 54px);
+        overflow-x: scroll;
+        .rightCont {
+          min-width: 997px;
+          height: 100%;
+          .rightCommon {
+            width: 167px;
+            border-top: 1px solid #d7d7d7;
+            border-bottom: 1px solid #d7d7d7;
+            .addIcon {
+              width: 38px;
+              height: 38px;
+              cursor: pointer;
+              display: block;
+              margin: 10px auto;
+            }
+            div:nth-child(1) {
+              width: 100%;
+              height: 40px;
+              background: rgba(56, 108, 153, 0.20);
+              text-align: center;
+              line-height: 40px;
+              font-size: 12px;
+              color: #333333;
+            }
+            div:nth-child(2) {
+              width: 100%;
+              height: 202px;
+              font-size: 16px;
+              color: #666666;
+              padding: 4px;
+              box-sizing: border-box;
+              display: flex;
+              display: -webkit-flex;
+              align-items: center;
+              background: #f8f8f8;
+            }
+            div:nth-child(3) {
+              width: 100%;
+              height: 200px;
+              font-size: 16px;
+              color: #666666;
+              padding: 4px;
+              box-sizing: border-box;
+              border-top: 1px solid #d7d7d7;
+              display: flex;
+              display: -webkit-flex;
+              align-items: center;
+              background: #f8f8f8;
+            }
+          }
+          .rightCommon:nth-child(2n+1) {
+            div:nth-child(2) {
+              background: #fff;
+            }
+            div:nth-child(3) {
+              background: #fff;
+            }
+          }
+        }
+      }
+    }
+    .editorBtn {
+      width: 130px;
+      height: 40px;
+      text-align: center;
+      line-height: 40px;
+      font-size: 16px;
+      border: 1px solid #cbcbcb;
+      border-radius: 6px;
+      cursor: pointer;
+      background: #69a0d0;
+      color: #fff;
+      margin: 47px auto 0;
+    }
+  }
+}
+.br{
+  border-right: 1px solid #d7d7d7;
+}

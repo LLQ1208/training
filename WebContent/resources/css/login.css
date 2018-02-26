@@ -1,0 +1,712 @@
+/*
+* @Author: wangly*/
+@charset "utf-8";
+/* 禁用iPhone中Safari的字号自动调整 */
+html { -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%;}
+/* 去除iPhone中默认的input样式 */
+input[type="submit"],
+
+input[type="reset"],
+
+input[type="button"],
+
+input{ resize: none; }
+*{margin:0;padding: 0;}
+/* 取消链接高亮  */
+body,div,ul,li,ol,h1,h2,h3,h4,h5,h6,input,textarea,select,p,dl,dt,dd,a,img,button,form,table,th,tr,td,tbody,article,
+aside, details,figcaption,figure,footer,header, menu,nav,section{ -webkit-tap-highlight-color:transparent; }
+/* 设置HTML5元素为块 */
+article, aside, details,figcaption,figure,footer,header, menu,nav,section { display: block; }
+/* 图片自适应 */
+img { max-width: 100%; height: auto; width:auto\9; /* ie8 */
+    -ms-interpolation-mode:bicubic; /*为了照顾ie图片缩放失真*/}
+/* 初始化 */
+body,div,ul,li,ol,h1,h2,h3,h4,h5,h6,input,textarea,select,p,dl,dt,dd,a,img,button,form,table,th,tr,td,tbody,article,
+aside, details,figcaption,figure,footer,header, menu,nav,section{ margin:0; padding:0; border:none; }
+/*
+ios字体： Heiti SC,Helvetica,HelveticaNeue
+android字体： 默认中文字体是Droidsansfallback 默认英文和数字字体是Droid Sans
+winphone字体：默认中文字体是Dengxian(方正等线体)  默认英文和数字字体是Segoe
+*/
+body{font-family:'微软雅黑',AvantiBold, SimHei,'Helvetica Neue',Arial,'Droid Sans',sans-serif; background: #eee;}
+em,i{ font-style:normal; }
+strong{ font-weight: normal; }
+.clearfix:after{ content:""; display:block; visibility:hidden; height:0; clear:both; }
+.clearfix{ zoom:1; }
+a{ text-decoration:none; color:#969696;}
+a:hover{ text-decoration:none; }
+ul,ol{ list-style:none; }
+h1, h2, h3, h4, h5, h6{ /* font-size:100%; */ font-family:"微软雅黑";  }
+img{ border: none;
+    max-width: 100%;
+    height: auto;
+    border: none;
+    interpolation-mode: bicubic;}
+input{ outline: none;}
+/*span {word-break: break-all;}*/
+
+/*清除*/
+.clearfix {
+}
+.clearfix:before, .clearfix:after {
+    content: "";
+    display: table;
+}
+.clearfix:after {
+    clear: both;
+}
+/*//flexable设置字体大小，可能根据情况改变*/
+/*body{width: 10rem;margin:0 auto; background: #f5f5f5}*/
+.fl{
+    float: left
+}
+.fr{
+    float: right
+}
+body{
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+}
+.main-content{
+    margin-left: 240px;width:1070px;height: 100%;min-height: 768px; background:#fff;overflow-y: auto;
+}
+.btn{
+    border-radius: 2px !important;
+}
+.pop-box-bg{
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top:0;
+    left:0;
+    background: rgba(0,0,0,.54);
+    display: none;
+}
+
+
+@charset "utf-8";
+#login {
+    min-width: 1280px;
+    min-height: 768px;
+    width: 100%;
+    height: 100%;
+    background: url("../images/login/login.jpg");
+    -webkit-background-size: cover;
+    background-size: cover; }
+#login .login {
+    width: 456px;
+    height: 408px;
+    margin: 190px auto 0;
+    background: rgba(79, 87, 105, 0.8);
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+}
+#login .login .top {
+    width: 100%;
+    height: 68px;
+    background: #4f5769;
+    -webkit-box-shadow: 0 8px 15px 0px #454954;
+    -moz-box-shadow: 0 8px 15px 0px #454954;
+    box-shadow: 0 8px 15px 0px #454954; }
+
+#login .login .top .logo {
+    width: 122px;
+    height: 68px;
+    margin: 0 auto;
+    background: url("../images/login/logo_03.png");
+    -webkit-background-size: cover;
+    background-size: cover; }
+#login .login .bottom {
+    width: 362px;
+    height: 292px;
+    margin: 47px 0 0 47px; }
+#login .login .bottom .user {
+    width: 100%;
+    height: 48px;
+    border: 1px solid #999999;
+    background: #fff;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box; }
+#login .login .bottom .user .userName {
+    height: 46px;
+    width: 326px;
+    text-indent: 8px;
+    font-size: 16px;
+    color: #999999;
+    background: transparent; }
+#login .login .bottom .user .userIcon {
+    background: url(../images/login/user.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 34px;
+    height: 36px;
+    margin-top: 4px;
+    display: inline-block; }
+#login .login .bottom .passWord {
+    width: 100%;
+    height: 48px;
+    border: 1px solid #999999;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    background: #fff;
+    margin-top: 20px; }
+#login .login .bottom .passWord .passWordIcon {
+    background: url(../images/login/lock-open.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 34px;
+    height: 36px;
+    margin-top: 4px;
+    display: inline-block; }
+#login .login .bottom .passWord .words {
+    height: 46px;
+    width: 326px;
+    text-indent: 8px;
+    font-size: 16px;
+    color: #999999;
+    background: transparent; }
+#login .login .bottom .remember {
+    width: 361px;
+    height: 60px;
+    line-height: 60px;
+    font-size: 14px;
+    color: #ffffff; }
+#login .login .bottom .remember input[type=checkbox] {
+    background: #d8d8d8; }
+#login .login .bottom .remember .forget {
+    color: #fff; }
+#login .login .bottom .loginBtn {
+    width: 362px;
+    height: 48px;
+    background: #fc340e;
+    margin-top: 12px;
+    text-align: center;
+    line-height: 48px;
+    color: #fff;
+    font-size: 16px;
+    cursor: pointer;}
+#login .login .bottom .loginOpen {
+    width: 100%;
+    height: 52px;
+    line-height: 52px;
+    text-align: center;
+    color: #fff;
+    font-size: 14px; }
+#login .login .bottom .loginOpen .toOpen {
+    color: #fc340e; }
+#login .changeWord {
+    width: 100%;
+    height: 100%;
+    background: rgba(222, 222, 222, 0.87); }
+#login .changeWord .changeTop {
+    width: 100%;
+    height: 107px;
+    background: #f6f6f6;
+    border-bottom: 2px solid #ccc; }
+#login .changeWord .changeTop .changeLogo {
+    width: 209px;
+    height: 109px;
+    background: url("../images/login/changeLogo_02.png");
+    -webkit-background-size: cover;
+    background-size: cover;
+    margin-left: 56px; }
+#login .changeWord .changeTop p {
+    width: 223px;
+    height: 32px;
+    line-height: 32px;
+    font-size: 30px;
+    color: #000;
+    margin-top: 52px;
+    font-weight: bold; }
+#login .changeWord .changeBottom {
+    width: 230px;
+    height: 182px;
+    margin: 142px auto 0; }
+#login .changeWord .changeBottom input {
+    width: 230px;
+    height: 36px;
+    border: 1px #ccc solid;
+    font-size: 16px;
+    color: #999999;
+    text-indent: 20px; }
+#login .changeWord .changeBottom .confirm {
+    width: 230px;
+    height: 36px;
+    text-align: center;
+    line-height: 36px;
+    background: #f54337;
+    font-size: 16px;
+    color: #f2f2f3;
+    margin-top: 50px; }
+#login .fillIn {
+    width: 100%;
+    height: 100%;
+    background: rgba(222, 222, 222, 0.87); }
+#login .fillIn .fillTop {
+    width: 100%;
+    height: 107px;
+    background: #f6f6f6;
+    border-bottom: 2px solid #ccc; }
+#login .fillIn .fillTop .changeLogo {
+    width: 209px;
+    height: 109px;
+    background: url("../images/login/changeLogo_02.png");
+    -webkit-background-size: cover;
+    background-size: cover;
+    margin-left: 56px; }
+#login .fillIn .fillTop p {
+    width: 223px;
+    height: 32px;
+    line-height: 32px;
+    font-size: 30px;
+    color: #000;
+    margin-top: 52px;
+    font-weight: bold; }
+#login .fillIn .traningLogo1 {
+    width: 84px;
+    height: 84px;
+    margin: 104px auto 0;
+    position: relative; }
+#login .fillIn .traningLogo1 .traningLogo {
+    width: 84px;
+    height: 84px;
+    background: url("../images/login/traningLogo_03.png");
+    -webkit-background-size: cover;
+    background-size: cover; }
+#login .fillIn .traningLogo1 .traningLogo img{
+    width: 84px;
+    height: 84px;
+    border-radius: 50%;}
+#login .fillIn .traningLogo1 .file {
+    width: 84px;
+    height: 84px;
+    overflow: hidden;
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: 22;
+    cursor: pointer;
+    background: transparent;
+    line-height: 88px;
+    text-align: center; }
+#login .fillIn .traningLogo1 .file input {
+    opacity: 0;
+    font-size: 50px;
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 84px;
+    height: 84px;
+    cursor: pointer; }
+#login .fillIn .fillBottom {
+    width: 362px;
+    margin: 62px auto 0; }
+#login .fillIn .fillBottom input {
+    width: 360px;
+    height: 36px;
+    border: 1px #ccc solid;
+    font-size: 16px;
+    color: #999999;
+    text-indent: 20px;
+    margin-top: 20px; }
+#login .fillIn .fillBottom input:first-child {
+    margin-top: 0; }
+#login .fillIn .fillBottom #textarea {
+    width: 360px;
+    min-height: 37px;
+    border: 1px #ccc solid;
+    font-size: 16px;
+    color: #999;
+    margin-top: 20px;
+    background: #fff;
+    position: relative; }
+#login .fillIn .fillBottom #textarea p {
+    width: 100%;
+    outline: none;
+    line-height: 20px;
+    padding: 8px 20px;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: 2; }
+#login .fillIn .fillBottom #textarea .pCover {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 360px;
+    height: 37px;
+    font-size: 16px;
+    line-height: 37px;
+    text-indent: 20px;
+    color: #999;
+    display: inline-block;
+    z-index: 1; }
+#login .fillIn .fillBottom .fillInConfirm {
+    width: 362px;
+    height: 36px;
+    text-align: center;
+    line-height: 36px;
+    background: #f54337;
+    font-size: 16px;
+    color: #f2f2f3;
+    margin-top: 50px;
+    cursor: pointer;}
+#login #forgetWord {
+    width: 100%;
+    height: 100%;
+    background: rgba(222, 222, 222, 0.87); }
+#login #forgetWord .forgetWordTop {
+    width: 100%;
+    height: 107px;
+    background: #f6f6f6;
+    border-bottom: 2px solid #ccc; }
+#login #forgetWord .forgetWordTop .changeLogo {
+    width: 209px;
+    height: 109px;
+    background: url("../images/login/changeLogo_02.png");
+    -webkit-background-size: cover;
+    background-size: cover;
+    margin-left: 56px; }
+#login #forgetWord .forgetWordTop p {
+    height: 32px;
+    line-height: 32px;
+    font-size: 30px;
+    color: #000;
+    margin-top: 52px;
+    font-weight: bold; }
+#login #forgetWord .forgetWordBottom {
+    width: 230px;
+    height: 182px;
+    margin: 142px auto 0; }
+#login #forgetWord .forgetWordBottom input {
+    width: 230px;
+    height: 36px;
+    border: 1px #ccc solid;
+    font-size: 16px;
+    color: #999999;
+    text-indent: 20px; }
+#login #forgetWord .forgetWordBottom .imgCode {
+    width: 230px;
+    height: 72px;
+    margin-top: 20px; }
+#login #forgetWord .forgetWordBottom .imgCode .imgCodeTop {
+    width: 100%;
+    height: 36px; }
+#login #forgetWord .forgetWordBottom .imgCode .imgCodeTop .short {
+    width: 120px;
+    float: left; }
+#login #forgetWord .forgetWordBottom .imgCode .imgCodeTop .imgCode1 {
+    float: right;
+    width: 94px;
+    height: 34px;
+    background: #ccc;
+    border: 1px dashed #fff; }
+#login #forgetWord .forgetWordBottom .imgCode .clickToRefresh {
+    color: #999999;
+    font-size: 13px;
+    width: 99%;
+    text-align: right;
+    margin-top: 5px; }
+#login #forgetWord .forgetWordBottom .forgetWordConfirm {
+    width: 230px;
+    height: 36px;
+    text-align: center;
+    line-height: 36px;
+    background: #f54337;
+    font-size: 16px;
+    color: #f2f2f3;
+    margin-top: 20px;
+    cursor: pointer;
+}
+#login .message {
+    width: 100%;
+    height: 100%;
+    background: rgba(222, 222, 222, 0.87); }
+#login .message .forgetWordTop {
+    width: 100%;
+    height: 107px;
+    background: #f6f6f6;
+    border-bottom: 2px solid #ccc; }
+#login .message .forgetWordTop .changeLogo {
+    width: 209px;
+    height: 109px;
+    background: url("../images/login/changeLogo_02.png");
+    -webkit-background-size: cover;
+    background-size: cover;
+    margin-left: 56px; }
+#login .message .forgetWordTop p {
+    height: 32px;
+    line-height: 32px;
+    font-size: 30px;
+    color: #000;
+    margin-top: 52px;
+    font-weight: bold; }
+#login .message .messageContent {
+    width: 265px;
+    margin: 156px auto 0; }
+#login .message .messageContent .messageOne {
+    width: 100%;
+    color: #000;
+    font-size: 20px;
+    text-align: left;
+    font-weight: bold; }
+#login .message .messageContent .messageTwo {
+    width: 100%;
+    color: #000;
+    font-size: 16px;
+    font-weight: bold;
+    margin-top: 20px; }
+#login .message .messageContent .messageThree {
+    width: 100%;
+    color: #000;
+    font-size: 16px;
+    margin-top: 48px; }
+#login .message .messageContent .messageInput {
+    width: 100%;
+    margin-top: 24px; }
+#login .message .messageContent .messageInput .messageCode {
+    width: 118px;
+    height: 38px;
+    border: 1px solid #ccc;
+    font-size: 14px;
+    color: #999999;
+    text-align: center; }
+#login .message .messageContent .messageInput .getMessage {
+    width: 98px;
+    height: 38px;
+    background: #fffbfb;
+    line-height: 38px;
+    text-align: center;
+    font-size: 14px;
+    color: #000;
+    margin-left: 6px; }
+#login .message .messageContent .tip {
+    width: 100%;
+    margin-top: 20px;
+    color: #999;
+    text-align: left;
+    font-size: 13px; }
+#login .message .messageContent .messageConfirm {
+    width: 226px;
+    height: 36px;
+    margin-top: 26px;
+    line-height: 36px;
+    text-align: center;
+    font-size: 16px;
+    background: #f54337;
+    color: #f2f2f3;
+    font-weight: bold;
+    cursor: pointer;}
+#login .open {
+    width: 100%;
+    height: 100%;
+    background: rgba(222, 222, 222, 0.87);
+    position: relative;
+    min-height: 768px;}
+#login .open .forgetWordTop {
+    width: 100%;
+    height: 107px;
+    background: #f6f6f6;
+    border-bottom: 2px solid #ccc; }
+#login .open .forgetWordTop .changeLogo {
+    width: 209px;
+    height: 109px;
+    background: url("../images/login/changeLogo_02.png");
+    -webkit-background-size: cover;
+    background-size: cover;
+    margin-left: 56px; }
+#login .open .forgetWordTop p {
+    height: 32px;
+    line-height: 32px;
+    font-size: 30px;
+    color: #000;
+    margin-top: 52px;
+    font-weight: bold; }
+#login .open .openInformation {
+    width: 356px;
+    margin: 120px auto 0; }
+#login .open .openInformation .openCommon {
+    width: 100%;
+    height: 38px;
+    border: 1px solid #cccccc;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    font-size: 16px;
+    background: #fff;
+    margin-bottom: 20px;
+    position: relative;}
+#login .open .openInformation .openCommon span {
+    display: inline-block;
+    width: 36px;
+    height: 36px;
+    margin-right: 6px;
+    float: left; }
+#login .open .openInformation .openCommon input {
+    height: 100%;
+    background: transparent;
+    width: 310px;
+    float: left;
+    font-size: 16px;
+    color: #999999; }
+#login .open .openInformation .openCommon .openUserIcon {
+    background: url("../images/login/icon_admin.png") no-repeat; }
+#login .open .openInformation .openCommon .openWordIcon {
+    background: url("../images/login/icon_pd.png") no-repeat; }
+#login .open .openInformation .openCommon .openAgainIcon {
+    background: url("../images/login/icon_ps.png") no-repeat; }
+#login .open .openInformation .openCommon .openPhoneIcon {
+    background: url("../images/login/icon_phone.png") no-repeat; }
+#login .open .openInformation .rules {
+    width: 100%;
+    font-size: 12px;
+    color: #000; }
+#login .open .openInformation .rules a {
+    font-size: 12px;
+    color: #000; }
+#login .open .openInformation .rules input[type=checkbox] {
+    width: 18px;
+    height: 18px;
+    background: #d8d8d8;
+    -webkit-border-radius: 2px;
+    -moz-border-radius: 2px;
+    border-radius: 2px; }
+#login .open .openInformation .openBtn {
+    width: 362px;
+    height: 38px;
+    line-height: 38px;
+    text-align: center;
+    font-size: 16px;
+    background: #f54337;
+    color: #f2f2f3;
+    font-weight: bold;
+    margin-top: 38px;
+    cursor: pointer}
+#login .open .agreePopus {
+    width: 305px;
+    height: 296px;
+    background: #fff;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+    position: absolute;
+    left: 50%;
+    margin-left: -150px;
+    top: 208px; }
+#login .open .agreePopus .agreePopusClose {
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 36px;
+    height: 31px;
+    background: url("../images/login/loginClose_03.png");
+    -webkit-background-size: cover;
+    background-size: cover;
+    cursor: pointer;}
+#login .open .agreePopus .agreePopusContent {
+    width: 235px;
+    height: auto;
+    margin: 30px auto 0; }
+#login .open .agreePopus .agreePopusContent .agreePopusTitle {
+    width: 100%;
+    font-size: 18px;
+    font-weight: bold;
+    color: #000;
+    text-align: left;
+    margin-bottom: 38px; }
+#login .open .agreePopus .agreePopusContent .agreePopusPhoneNumber {
+    font-size: 16px;
+    color: #000;
+    width: 100%;
+    margin-bottom: 24px; }
+#login .open .agreePopus .agreePopusContent .agreePopusCode {
+    width: 100%;
+    height: 38px;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box; }
+#login .open .agreePopus .agreePopusContent .agreePopusCode input {
+    width: 124px;
+    height: 38px;
+    border: 1px solid #ccc;
+    font-size: 14px;
+    text-align: center;
+    color: #999; }
+#login .open .agreePopus .agreePopusContent .agreePopusCode .agreePopusGetCode {
+    width: 103px;
+    height: 40px;
+    background: #ccc;
+    line-height: 38px;
+    color: #fff;
+    text-align: center;
+    font-size: 14px; }
+#login .open .agreePopus .agreePopusContent .agreePopusTip {
+    width: 228px;
+    color: #999;
+    margin-top: 20px;
+    font-size: 13px; }
+#login .open .agreePopus .agreePopusContent .agreePopusConfirm {
+    width: 100%;
+    height: 38px;
+    line-height: 38px;
+    text-align: center;
+    font-size: 16px;
+    background: #f54337;
+    color: #f2f2f3;
+    font-weight: bold;
+    margin-top: 24px; }
+
+
+.agreePopusBg {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: 2;
+    display: none; }
+
+
+::-webkit-input-placeholder {
+    color: #999; }
+
+:-moz-placeholder {
+    /* Mozilla Firefox 4 to 18 */
+    color: #999; }
+
+::-moz-placeholder {
+    /* Mozilla Firefox 19+ */
+    color: #999; }
+
+:-ms-input-placeholder {
+    /* Internet Explorer 10-11 */
+    color: #999; }
+input:-webkit-autofill{
+    background-color: #fff !important;
+}
+
+.login-mesg{
+    color: red;
+    font-size: 14px;
+    font-style: normal;
+    margin-top: 8px;
+    height: auto;
+}
+
+.toopen-mesg{
+    position: absolute;
+    left: 360px;
+    top: 8px;
+    font-size: 12px;
+    color: #666;
+    width: 240px !important;
+    line-height: 20px;
+}
+/*# sourceMappingURL=index.css.map */
+
+

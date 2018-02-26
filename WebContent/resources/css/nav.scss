@@ -1,0 +1,79 @@
+.nav{
+  width:151px;
+  height:100%;
+  background:#386c99;
+  box-shadow:0 0 4px 0 rgba(219,219,219,0.50);
+  position: absolute;
+  top:0;
+  left:0;
+  .user{
+    width:100%;
+    height: 126px;
+    border-bottom:1px solid #ccc;
+    .usericon{
+      width:47px;
+      height:47px;
+      background:url("../img/icon_temp.png");
+      -webkit-background-size:cover;
+      background-size:cover;
+      margin:26px auto 0;
+    }
+    span{
+      font-size:pxToRem(12px);
+      color:#ffffff;
+      text-align:center;
+      display: block;
+      width:100%;
+      margin-top:10px;
+    }
+  }
+  .list{
+    width:100%;
+    height:auto;
+    .listCommon{
+      width:100%;
+      .firstCommon{
+        width:100%;
+        height:36px;
+        border-bottom:1px solid #ccc;
+        font-size:14px;
+        color:#ffffff;
+        line-height:36px;
+        cursor: pointer;
+        span:first-child{
+          margin-left:37px;
+          margin-right:10px;
+        }
+        .point{
+          display: inline-block;
+          width:10px;
+          height:6px;
+          background: #000;
+          -webkit-background-size:cover;
+          background-size:cover;
+        }
+        .point.active{
+          background: red;
+        }
+      }
+      .secondCommon{
+        width:100%;
+        background:#366186;
+        display: none;
+        .final{
+          width:100%;
+          height:29px;
+          text-indent: 37px;
+          font-size:12px;
+          color:#ffffff;
+          opacity: 0.5;
+          line-height: 29px;
+          cursor: pointer;
+        }
+        .final.active{
+          color:#7ec3ff;
+        }
+      }
+    }
+  }
+}
