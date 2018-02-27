@@ -1,0 +1,191 @@
+.box {
+  width: 100%;
+  height: 100%;
+  min-width: 1260px;
+  min-height: 800px; }
+  .box .container-box {
+    width: 100%;
+    height: 100%;
+    padding: 0 30px 0 151px;
+    box-sizing: border-box; }
+    .box .container-box .searchlist {
+      width: 100%;
+      padding: 26px 0 0 29px;
+      box-sizing: border-box; }
+      .box .container-box .searchlist .searchone {
+        background: #ffffff;
+        border: 1px solid #d7d7d7;
+        width: 428px;
+        -webkit-border-radius: 20px;
+        -moz-border-radius: 20px;
+        border-radius: 20px;
+        height: 28px;
+        float: left; }
+        .box .container-box .searchlist .searchone span {
+          display: inline-block;
+          width: 14px;
+          height: 14px;
+          background: url("../img/icon_search.png") no-repeat;
+          -webkit-background-size: cover;
+          background-size: cover;
+          float: left;
+          margin: 6px 4px 0 6px; }
+        .box .container-box .searchlist .searchone input {
+          font-size: 12px;
+          color: #999999;
+          width: 180px;
+          height: 100%;
+          float: left;
+          text-indent: 40px;
+          margin-left: 30px; }
+      .box .container-box .searchlist .searchbtn {
+        background: #69a0d0;
+        width: 60px;
+        height: 30px;
+        line-height: 30px;
+        text-align: center;
+        font-size: 12px;
+        color: #ffffff;
+        float: left;
+        margin-left: 20px;
+        cursor: pointer;
+        -webkit-border-radius: 8px;
+        -moz-border-radius: 8px;
+        border-radius: 8px; }
+      .box .container-box .searchlist .direct {
+        height: 30px;
+        line-height: 30px;
+        font-size: 12px;
+        color: #333333;
+        margin-left: 25px;
+        float: left;
+        margin-right: 8px; }
+      .box .container-box .searchlist .bootstrap-select:not([class*=span]):not([class*=col-]):not([class*=form-control]):not(.input-group-btn) {
+        width: 132px;
+        height: 30px; }
+      .box .container-box .searchlist .btn {
+        padding: 4px 12px; }
+      .box .container-box .searchlist .addbtn {
+        width: 156px;
+        height: 30px;
+        text-align: center;
+        line-height: 30px;
+        font-size: 12px;
+        color: #ffffff;
+        float: right;
+        margin-left: 20px;
+        cursor: pointer;
+        background: #69a0d0;
+        -webkit-border-radius: 8px;
+        -moz-border-radius: 8px;
+        border-radius: 8px; }
+    .box .container-box .table {
+      background: #fff;
+      border: 1px solid #d7d7d7;
+      width: calc(100% - 28px);
+      height: 608px;
+      margin: 20px 0 0 28px;
+      -webkit-box-sizing: border-box;
+      -moz-box-sizing: border-box;
+      box-sizing: border-box; }
+      .box .container-box .table .tableTitle {
+        background: rgba(56, 108, 153, 0.2);
+        width: 100%;
+        height: 40px;
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box; }
+        .box .container-box .table .tableTitle div {
+          font-size: 12px;
+          color: #333333;
+          height: 100%;
+          line-height: 40px;
+          text-align: center;
+          width: 6.6%;
+          float: left; }
+        .box .container-box .table .tableTitle div:nth-child(1) {
+          margin-left: 10px; }
+        .box .container-box .table .tableTitle div:nth-child(3) {
+          width: 14.3%; }
+        .box .container-box .table .tableTitle div:nth-child(4) {
+          width: 14.4%; }
+        .box .container-box .table .tableTitle div:nth-child(5) {
+          width: 14.4%; }
+        .box .container-box .table .tableTitle div:nth-child(6) {
+          width: 14.4%; }
+        .box .container-box .table .tableTitle div:nth-child(7) {
+          width: 20.4%; }
+        .box .container-box .table .tableTitle div:nth-child(8) {
+          width: 20.4%; }
+      .box .container-box .table .tcontainer {
+        width: 100%;
+        height: 560px;
+        overflow-y: scroll; }
+      .box .container-box .table .tabCommon {
+        width: 100%;
+        height: 40px;
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box; }
+        .box .container-box .table .tabCommon div {
+          font-size: 12px;
+          color: #333333;
+          height: 100%;
+          line-height: 40px;
+          text-align: center;
+          width: 6.6%;
+          float: left; }
+        .box .container-box .table .tabCommon div:nth-child(1) {
+          margin-left: 10px; }
+        .box .container-box .table .tabCommon div:nth-child(3) {
+          width: 14.3%; }
+        .box .container-box .table .tabCommon div:nth-child(4) {
+          width: 14.4%; }
+        .box .container-box .table .tabCommon div:nth-child(5) {
+          width: 15.4%; }
+        .box .container-box .table .tabCommon div:nth-child(6) {
+          width: 14.4%;
+          cursor: pointer; }
+          .box .container-box .table .tabCommon div:nth-child(6) .tocheck {
+            height: 20px;
+            background: #ccc;
+            margin-top: 12px;
+            margin-left: 62px;
+            border-radius: 10px;
+            width: 60%;
+            line-height: 20px; }
+        .box .container-box .table .tabCommon div:nth-child(7) {
+          width: 14.4%;
+          color: #4795d7;
+          cursor: pointer; }
+        .box .container-box .table .tabCommon div:nth-child(8) {
+          width: 20.4%;
+          color: #4795d7;
+          cursor: pointer; }
+          .box .container-box .table .tabCommon div:nth-child(8) span:first-child {
+            display: inline-block;
+            width: 9px;
+            height: 9px;
+            background: url("../img/icon_download.png") no-repeat;
+            -webkit-background-size: cover;
+            background-size: cover; }
+      .box .container-box .table .tabCommon {
+        background: #fff; }
+
+::-webkit-input-placeholder {
+  /* WebKit, Blink, Edge */
+  color: #999999; }
+
+:-moz-placeholder {
+  /* Mozilla Firefox 4 to 18 */
+  color: #999999; }
+
+::-moz-placeholder {
+  /* Mozilla Firefox 19+ */
+  color: #999999; }
+
+:-ms-input-placeholder {
+  /* Internet Explorer 10-11 */
+  color: #999999; }
+
+/*# sourceMappingURL=administration.css.map */

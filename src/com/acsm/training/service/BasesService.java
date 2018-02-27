@@ -9,4 +9,6 @@ import java.util.List;
  */
 public interface BasesService {
     List<Base> queryBaseList(Integer provinceAreaId,Integer cityAreaId,Integer countyAreaId);
+
+    Base queryById(Integer baseId);
 }

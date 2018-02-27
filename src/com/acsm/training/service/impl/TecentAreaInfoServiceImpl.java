@@ -36,7 +36,7 @@ public class TecentAreaInfoServiceImpl implements TecentAreaInfoService{
 
     @Override
     public TecentAreaInfo queryByAreaId(int areaId) {
-        return null;
+        return tecentAreaInfoDao.queryByAreaId(areaId);
     }
 
 

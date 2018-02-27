@@ -22,4 +22,9 @@ public class BasesServiceImpl implements BasesService{
     public List<Base> queryBaseList(Integer provinceAreaId, Integer cityAreaId, Integer countyAreaId) {
         return basesDao.queryListByArea(provinceAreaId,cityAreaId,countyAreaId);
     }
+
+    @Override
+    public Base queryById(Integer baseId) {
+        return basesDao.queryById(baseId);
+    }
 }
