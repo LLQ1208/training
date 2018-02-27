@@ -10,7 +10,6 @@ $(function () {
 
     })
     $('.final').on('click',function () {
-        $('.final').removeClass('active')
-        $(this).addClass('active')
+        window.location.href = $(this).attr("href");
     })
 })

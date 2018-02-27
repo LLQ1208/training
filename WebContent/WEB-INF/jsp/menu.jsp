@@ -15,7 +15,7 @@
     <link rel="stylesheet" href="${ctx}/resources/css/nav.css">
 </head>
 <body>
-<div class="box clearfix">
+<div class="clearfix">
     <div class="nav fl clearfix">
         <div class="user clearfix">
             <div class="usericon">
@@ -29,38 +29,28 @@
                     <span class="point"></span>
                 </div>
                 <div class="secondCommon">
-                    <div class="final">添加课程</div>
-                    <div class="final active">课程列表</div>
+                    <div class="final">总管理员</div>
+                    <div class="final active">省级管理员</div>
+                    <div class="final active">基地管理员</div>
                 </div>
             </div>
             <div class="listCommon">
                 <div class="firstCommon">
-                    <span>权限管理</span>
+                    <span>课程管理</span>
                     <span class="point"></span>
                 </div>
-                <div class="secondCommon">
-                    <div class="final">添加课程</div>
-                    <div class="final">课程列表</div>
+                <div class="secondCommon" style="${group == 2 ? 'display:block':'display:none'}">
+                    <div class="final ${menuName == 'courseAdd' ? 'active':''}" href="${ctx}/course/courseAdd">添加课程</div>
+                    <div class="final ${menuName == 'classList' ? 'active':''}" href="${ctx}/course/courseList">课程列表</div>
                 </div>
             </div>
             <div class="listCommon">
                 <div class="firstCommon">
-                    <span>权限管理</span>
+                    <span>评测管理</span>
                     <span class="point"></span>
                 </div>
                 <div class="secondCommon">
-                    <div class="final">添加课程</div>
-                    <div class="final">课程列表</div>
-                </div>
-            </div>
-            <div class="listCommon">
-                <div class="firstCommon">
-                    <span>权限管理</span>
-                    <span class="point"></span>
-                </div>
-                <div class="secondCommon">
-                    <div class="final">添加课程</div>
-                    <div class="final">课程列表</div>
+                    <div class="final">1</div>
                 </div>
             </div>
         </div>

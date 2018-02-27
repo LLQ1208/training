@@ -19,5 +19,7 @@
          
          <import resource="applicationContext-db.xml"/>
 
-
+    <bean id="areaManage" class="com.acsm.training.manage.AreaManage" init-method="init">
+        <property name="tecentAreaInfoService" ref="tecentAreaInfoService"/>
+    </bean>
 </beans>

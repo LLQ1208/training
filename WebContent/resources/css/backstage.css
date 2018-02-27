@@ -22,7 +22,7 @@
           display: inline-block;
           width: 14px;
           height: 14px;
-          background: url("../img/icon_search.png") no-repeat;
+          background: url("../images/icon_search.png") no-repeat;
           -webkit-background-size: cover;
           background-size: cover;
           float: left;
@@ -131,7 +131,7 @@
             display: inline-block;
             width: 9px;
             height: 9px;
-            background: url("../img/icon_download.png") no-repeat;
+            background: url("../images/icon_download.png") no-repeat;
             -webkit-background-size: cover;
             background-size: cover; }
       .box .container-box .table .tabCommon:nth-child(2n+1) {

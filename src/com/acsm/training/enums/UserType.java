@@ -6,10 +6,9 @@ package com.acsm.training.enums;
  */
 public enum UserType {
 
-    BOSS(1, "老板"),
-    EMPLOYEE(5, "员工"),
-    COACH(3, "教练"),
-    MEMBER(4, "会员");
+    ADMIN(1, "总管理员"),
+    PROVINCEADMIN(2, "省级管理员"),
+    BASEADMIN(3, "基地管理员");
 
     public final int CODE;
     public final String DESC;

@@ -48,7 +48,6 @@ public class IndexController extends BaseController{
 
 	@RequestMapping(value="/index")
 	public String toInformation(HttpServletRequest request, HttpServletResponse response){
-		System.out.println(111);
-		return "menu";
+		return "course/courseAdd";
 	}
 }
