@@ -14,4 +14,5 @@ public interface CourseDao extends BaseDao<Course>{
 
     Course queryById(int id);
 
+    List<Course> queryList(int courseScheduleId);
 }

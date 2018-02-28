@@ -26,6 +26,10 @@ public class PageHelper<T> {
 
 	private int nowPageIndex;
 
+	private int tempParam1;
+
+	private int tempParam2;
+
 	public void setNowPageIndex(int nowPageIndex) {
 		this.nowPageIndex = nowPageIndex;
 	}
@@ -108,4 +112,19 @@ public class PageHelper<T> {
 		return list;
 	}
 
+	public int getTempParam1() {
+		return tempParam1;
+	}
+
+	public void setTempParam1(int tempParam1) {
+		this.tempParam1 = tempParam1;
+	}
+
+	public int getTempParam2() {
+		return tempParam2;
+	}
+
+	public void setTempParam2(int tempParam2) {
+		this.tempParam2 = tempParam2;
+	}
 }

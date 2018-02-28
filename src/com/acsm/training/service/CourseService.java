@@ -1,5 +1,6 @@
 package com.acsm.training.service;
 
+import com.acsm.training.model.CourseSchedule;
 import com.acsm.training.model.UserInfo;
 import com.acsm.training.model.basic.PageHelper;
 import com.acsm.training.model.page.ClassModel;
@@ -24,8 +25,21 @@ public interface CourseService {
                     String beginDate,String endDate,String className,JSONArray courseArr,
                     UserInfo userInfo);
 
+    void saveEditCourse(Integer courseScheduleId,Integer provinceAreaId,Integer cityAreaId,Integer countyAreaId,Integer baseId,
+                    String beginDate,String endDate,String className,JSONArray courseArr,
+                    UserInfo userInfo);
+
     PageHelper<ClassModel> getClassList(String searchKey,Integer provinceAreaId,UserInfo userInfo,int pageSize,int pageIndex);
 
 
     List<CourseModel> queryCourseDetail(int classScheduleId);
+
+    int getCourseNum(String searchKey,Integer provinceAreaId,UserInfo userInfo);
+
+    CourseSchedule queryCourseScheduleById(int id);
+
+
+    List<CourseModel> queryEditCourseList(int classScheduleId,String beginDate,String endDate);
+
+    void deleteClass(int classScheduleId);
 }

@@ -150,13 +150,13 @@
           color: #4795d7;
           font-size: 24px; }
     .box .container-box .page {
-      width: 344px;
+      /*width: 344px;
       height: 30px;
       background: #ffffff;
       box-shadow: 0 2px 2px 0 rgba(217, 217, 217, 0.5);
       border-radius: 2px;
       margin: 60px auto;
-      display: flex; }
+      display: flex; */}
       .box .container-box .page div {
         width: 35px;
         height: 100%;

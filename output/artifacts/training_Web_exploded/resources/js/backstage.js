@@ -6,6 +6,14 @@ $(function () {
     $('.directChange').selectpicker()
     //分页
     loadpage();
+    //二维码预览
+    qrDetail();
+    //课程详情
+    classDetail();
+    //搜索
+    $(".searchbtn").on("click",function(){
+        search(1,1);
+    })
 });
 function changeWin() {
     $('.box').css({
@@ -52,71 +60,49 @@ function search(page,type){
         dataType: 'json',
         contentType: "application/x-www-form-urlencoded; charset=utf-8",
         success: function (data) {
-            var html = '';
+            var html = '<div class="tableTitle">'+
+                    '<div>序号</div>'+
+                    '<div>地区</div>'+
+                    '<div>班次</div>'+
+                    '<div>基地管理员</div>'+
+                    '<div>班次人数</div>'+
+                    '<div>课节数</div>'+
+                    '<div>详情</div>'+
+                    '<div>二维码</div>'+
+                    '</div>';
             if(null != data && data != undefined){
                 var pageHelper = data;
                 if(pageHelper.list != null && pageHelper.list.length > 0){
                     for(var i=0;i<pageHelper.list.length;i++){
-                        var template = pageHelper.list[i];
-                        html += '<li class="clearfix">'+
-                        '<p class="name fl"><input type="checkbox" class="select-one" value="'+template.memberCardId+'"><label onclick="toDetail(this)" class="over-hide" memberId="'+template.memberId+'"  boxid="'+template.box+'">'+template.memberName+'</label></p>'+
-                        '<p class="sex-box fl">'+template.sexStr+'</p>'+
-                        '<p class="birth fl">'+template.birthday+'</p>'+
-                        '<p class="phone fl">'+template.phone+'</p>'+
-                        '<p class="mail fl">'+template.email+'</p>'+
-                        '<p class="run-card fl">'+template.firstOpenCardTime+'</p>'+
-                        '<p class="renewal-card fl">'+template.continueCardTime+'</p>'+
-                        '<p class="expire fl">'+template.cardEndTime+'</p>'+
-                        '<p class="card-kind fl">'+template.cardTemplateName+'</p>'+
-                        '<p class="card-type fl">'+template.memberCardType+'</p>'+
-                        '<p class="count fl">'+template.totalCount+'</p>'+
-                        '<p class="status fl">'+template.cardStatus+'</p>'+
-                        '<p class="latest-class fl">'+template.lastCourseTime+'</p>'+
-                        '<p class="add-up-num fl">'+template.orderCourseCount+'</p>'+
-                        '<p class="rate fl">'+template.orderCourseRate+'</p>'+
-                        '<p class="order-class fl">'+template.thisCardOrderCourseCount+'</p>'+
-                        '<p class="order-rate fl">'+template.thisCardOrderCourseRate+'</p>'+
-                        '<p class="attendance fl">'+template.attendanceRate+'</p>'+
-                        '</li>';
+                        var classModel = pageHelper.list[i];
+                        html += '<div class="tabCommon">'+
+                        '<div>'+ (i+1) + '</div>'+
+                        '<div>'+classModel.area+'</div>'+
+                        '<div>'+classModel.className+'</div>'+
+                        '<div>'+classModel.baseAdmin+'</div>'+
+                        '<div>'+classModel.classPersonNum+'</div>'+
+                        '<div>'+classModel.courseNum+'</div>'+
+                        '<div class="classDetail" href="'+ctx+'/course/courseDetail?id='+classModel.classScheduleId+'">点击查看详情</div>'+
+                        '<div class="qrCodedetail" classScheduleId="'+classModel.classScheduleId+'"><span></span><span>下载</span></div>'+
+                        '<div>';
                     }
                 }
-                $(".data-list").html(html);
-                $('.select-all,.select-one').iCheck({
-                    checkboxClass: 'icheckbox_minimal-blue',
-                    increaseArea: '20%' // optional
-                });
-                $('.select-one').on('ifChanged', function () {
-                    // console.log($(this).parents('li').index());
-                    var n = 0;
-                    for (var i = 0; i < $('.data-list li').length; i++) {
-                        if ($('.data-list li').eq(i).find('.select-one').prop('checked') == true) {
-                            n++;
-                        }
-                    }
-                    if (n == $('.data-list li').length) {
-                        $('.select-all').iCheck('check');
-                    } else {
-                        $('.select-all').iCheck('uncheck');
-                    }
-                });
-                // 全选
-                $('.select-all').on('ifClicked', function () {
-                    // console.log($(this).prop('checked'));
-                    if (!$(this).prop('checked') == true) {
-                        $('.select-one').iCheck('check');
-                    } else {
-                        $('.select-one').iCheck('uncheck');
-                    }
-                });
+                $(".table").html(html);
+
                 if(pageHelper.totalRow != 0){
                     $("#pagination").show();
                     $("#PageCount").val(pageHelper.totalRow);
                 }else{
                     $("#pagination").hide();
                 }
-
+                $("#courseNum").html(pageHelper.tempParam1);
+                $("#studentNum").html(pageHelper.tempParam2);
+                $("#classNum").html(pageHelper.totalRow);
             }
-            $("#nowPageIndex").val(page);
+            //二维码预览
+            qrDetail();
+            //课程详情
+            classDetail();
         },
         error: function () {
             console.log("搜索会员错误")
@@ -127,3 +113,21 @@ function search(page,type){
     }
 }
 $(window).resize(changeWin);
+
+
+function qrDetail(){
+    $(".qrCodedetail").on("click",function(){
+        var ctx = $("#ctx").val();
+        var classScheduleId = $(this).attr("classScheduleId");
+        window.open(ctx + "/course/getTwoDimension?classScheduleId=" + classScheduleId);
+    });
+}
+
+function classDetail(){
+    $(".classDetail").on("click",function(){
+        var ctx = $("#ctx").val();
+        var href = $(this).attr("href");
+        window.location.href = href;
+    });
+}
+

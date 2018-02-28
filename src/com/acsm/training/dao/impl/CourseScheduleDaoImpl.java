@@ -80,4 +80,48 @@ public class CourseScheduleDaoImpl extends BaseDaoImpl<CourseSchedule> implement
         pageHelper.setList(this.queryBySql(pageSql.toString()));
         return pageHelper;
     }
+
+    @Override
+    public int queryCourseNum(String searchKey, Integer provinceAreaId, UserInfo userInfo) {
+        StringBuffer sql = new StringBuffer();
+        sql.append("select sum(1) as num, ");
+        sql.append(" 1 as groupId ");
+        sql.append(" from course_schedule c, ");
+        sql.append(" base b, ");
+        sql.append(" tecent_area_info province, ");
+        sql.append(" tecent_area_info city, ");
+        sql.append(" tecent_area_info county, ");
+        sql.append(" user_info u, ");
+        sql.append(" course ");
+        sql.append(" where ");
+        sql.append(" c.base_id=b.id ");
+        sql.append(" and b.procince_area_id = province.area_id  ");
+        sql.append(" and b.city_area_id = city.area_id  ");
+        sql.append(" and b.county_area_id = county.area_id  ");
+        sql.append(" and c.insert_user = u.id  ");
+        sql.append(" and c.id=course.course_schedule_id  ");
+        sql.append(" and c.deleted=0 ");
+        if(StringUtils.isNotEmpty(searchKey)){
+            sql.append(" and (c.class_name like '%").append(searchKey).append("%'");
+            sql.append(" or province.`name` like '%").append(searchKey).append("%'");
+            sql.append(" or city.`name` like '%").append(searchKey).append("%'");
+            sql.append(" or county.`name` like '%").append(searchKey).append("%')");
+        }
+        if(userInfo.getUserType() == UserType.BASEADMIN.getCODE()){
+            sql.append(" and c.base_id= ").append(userInfo.getBaseId());
+        }
+        if(provinceAreaId != null && provinceAreaId != 0  ){
+            sql.append(" and b.procince_area_id= ").append(provinceAreaId);
+        }
+        sql.append(" group by c.id ");
+        sql.append(" order by c.id desc ");
+
+        StringBuffer totalSql = new StringBuffer();
+        totalSql.append("select sum(test.num) from (").append(sql.toString()).append(") test GROUP BY test.groupId");
+        List<Object> list = this.queryBySql(totalSql.toString());
+        if(null != list && list.size() > 0){
+            return Integer.valueOf(list.get(0).toString());
+        }
+        return 0;
+    }
 }

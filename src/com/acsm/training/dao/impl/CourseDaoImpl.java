@@ -32,4 +32,10 @@ public class CourseDaoImpl extends BaseDaoImpl<Course> implements CourseDao {
         String hql ="from Course where id=?";
         return (Course) this.Queryobject(hql, id);
     }
+
+    @Override
+    public List<Course> queryList(int courseScheduleId) {
+        String hql ="from Course where courseScheduleId=? and deleted=0";
+        return this.list(hql,courseScheduleId);
+    }
 }

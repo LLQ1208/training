@@ -27,6 +27,7 @@ public class CourseSchedule implements Serializable{
     private Integer insertUser;
     private Integer baseId;
 
+    private Base base;
     @Id
     @GeneratedValue
     @Column(name="id",length=11)
@@ -122,5 +123,14 @@ public class CourseSchedule implements Serializable{
 
     public void setBaseId(Integer baseId) {
         this.baseId = baseId;
+    }
+
+    @Transient
+    public Base getBase() {
+        return base;
+    }
+
+    public void setBase(Base base) {
+        this.base = base;
     }
 }

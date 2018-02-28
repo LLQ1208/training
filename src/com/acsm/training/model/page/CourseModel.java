@@ -16,6 +16,8 @@ public class CourseModel implements Serializable{
     private static final long serialVersionUID = 6940158109057420189L;
 
     private Date date;
+    private String showDate;
+    private String week;
     private Course courseAM;//上午课
     private Course coursePM;//上午课
 
@@ -43,4 +45,19 @@ public class CourseModel implements Serializable{
         this.coursePM = coursePM;
     }
 
+    public String getShowDate() {
+        return showDate;
+    }
+
+    public void setShowDate(String showDate) {
+        this.showDate = showDate;
+    }
+
+    public String getWeek() {
+        return week;
+    }
+
+    public void setWeek(String week) {
+        this.week = week;
+    }
 }

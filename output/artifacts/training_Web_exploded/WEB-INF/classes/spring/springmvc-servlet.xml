@@ -12,7 +12,8 @@
 		http://www.springframework.org/schema/task  http://www.springframework.org/schema/task/spring-task-3.0.xsd">
 	<mvc:annotation-driven/>
 	<mvc:resources location="/resources/" mapping="/resources/**"/>
-	
+	<mvc:resources location="/weChat/" mapping="/weChat/**"/>
+
 	<mvc:interceptors>
 		<mvc:interceptor>
 			<mvc:mapping path="/**" />
@@ -21,7 +22,7 @@
 		<mvc:interceptor>
 			<mvc:mapping path="/**" />
 			<mvc:exclude-mapping path="/resources/**"/>
-			<mvc:exclude-mapping path="/WEB-INF/**"/>
+			<mvc:exclude-mapping path="/weChat/**"/>
 			<bean id="authenticationInterceptor"
 				class="com.acsm.training.web.AuthenticationInterceptor">
 			</bean>

@@ -31,16 +31,16 @@
                 <span></span>
                 <input type="text" placeholder="按地区、班次搜索" id="searchKey">
             </div>
-            <div class="searchbtn">搜索</div>
+            <div class="searchbtn" style="cursor: pointer;">搜索</div>
             <div class="direct">地区</div>
             <select name="" id="province" class="directChange">
                 <c:forEach items="${provinceList}" var="province">
                     <c:choose>
-                        <c:when test="${provinceAreaId == province.id}">
-                            <option id="${province.id}" selected>${province.name}</option>
+                        <c:when test="${provinceAreaId == province.areaId}">
+                            <option value="${province.areaId}" selected>${province.name}</option>
                         </c:when>
                         <c:otherwise>
-                            <option id="${province.id}">${province.name}</option>
+                            <option value="${province.areaId}">${province.name}</option>
                         </c:otherwise>
                     </c:choose>
                 </c:forEach>
@@ -59,14 +59,14 @@
             </div>
             <c:forEach items="${pageHelper.list}" var="classModel" varStatus="index">
                 <div class="tabCommon">
-                    <div>${index.index}</div>
+                    <div>${index.index + 1}</div>
                     <div>${classModel.area}</div>
                     <div>${classModel.className}</div>
                     <div>${classModel.baseAdmin}</div>
                     <div>${classModel.classPersonNum}</div>
                     <div>${classModel.courseNum}</div>
-                    <div><a href="${ctx}/course/courseDetail?id=${classModel.classScheduleId}" >点击查看详情</a></div>
-                    <div>
+                    <div class="classDetail" href="${ctx}/course/courseDetail?id=${classModel.classScheduleId}">点击查看详情</div>
+                    <div class="qrCodedetail" classScheduleId="${classModel.classScheduleId}">
                         <span></span>
                         <span>下载</span>
                     </div>
@@ -76,32 +76,32 @@
         <div class="totle">
             <div class="fr">
                 <span>课程：</span>
-                <span>100</span>
+                <span id="courseNum">${pageHelper.tempParam1}</span>
                 <span>节</span>
             </div>
             <div class="fr">
                 <span>参与人数：</span>
-                <span>1100</span>
+                <span id="studentNum">${pageHelper.tempParam2}</span>
                 <span>人</span>
             </div>
             <div class="fr">
                 <span>共计：</span>
-                <span>20</span>
+                <span id="classNum">${pageHelper.totalRow}</span>
                 <span>班次</span>
             </div>
         </div>
-        <div class="page_div" style="text-align: center;padding-top: 60px; margin: 0 auto;">
+        <div class="page" style="text-align: center;padding-top: 60px; margin: 0 auto;">
             <ul class="pagination" id="pagination">
             </ul>
             <input type="hidden" id="PageCount" runat="server" value="${pageHelper.totalRow}"/>
             <input type="hidden" id="PageSize" runat="server" value="10"/>
-            <input type="hidden" id="countindex" runat="server" value="1"/>
+            <input type="hidden" id="countindex" runat="server" value="10"/>
             <!--设置最多显示的页码数 可以手动设置 默认为7-->
             <input type="hidden" id="visiblePages" runat="server" value="5"/>
         </div>
     </div>
 </div>
-
+<input type="hidden" value="${ctx}" id="ctx"/>
 <script src="${ctx}/resources/js/jquery-1.11.3.min.js"></script>
 <script src="${ctx}/resources/js/bootstrap.min.js"></script>
 <script src="${ctx}/resources/js/bootstrap-select.min.js"></script>

@@ -6,6 +6,7 @@ import com.acsm.training.dao.BasesDao;
 import com.acsm.training.enums.UserType;
 import com.acsm.training.manage.AreaManage;
 import com.acsm.training.model.Base;
+import com.acsm.training.model.CourseSchedule;
 import com.acsm.training.model.TecentAreaInfo;
 import com.acsm.training.model.UserInfo;
 import com.acsm.training.model.basic.PageHelper;
@@ -48,6 +49,8 @@ public class CourseController extends BaseController{
     BasesService basesService;
 
     private static final int PAGE_SIZE = 10;
+
+    private static final String URL = "http://192.168.202.1:8080/training/";
     /**
      * 跳转添加
      * @param request
@@ -57,8 +60,8 @@ public class CourseController extends BaseController{
     @RequestMapping(value="/courseAdd")
     public String courseAdd(HttpServletRequest request, HttpServletResponse response){
         //默认展示一周
-        String beginTime = DateUtil.format(new Date(),"yyyy/MM/dd");
-        String endTime = DateUtil.format(DateUtil.getDate(new Date(),6),"yyyy/MM/dd");
+        String beginTime = DateUtil.format(new Date(), "yyyy/MM/dd");
+        String endTime = DateUtil.format(DateUtil.getDate(new Date(), 6), "yyyy/MM/dd");
         request.setAttribute("beginTime",beginTime);
         request.setAttribute("endTime",endTime);
         request.setAttribute("proviceList",AreaManage.getProviceList());
@@ -105,7 +108,7 @@ public class CourseController extends BaseController{
     @RequestMapping(value="/getBaseList",method= RequestMethod.GET)
     @ResponseBody
     public String getBaseList(HttpServletRequest request,HttpServletResponse response){
-        Integer provinceAreaId = ServletRequestUtils.getIntParameter(request,"provinceAreaId",0);
+        Integer provinceAreaId = ServletRequestUtils.getIntParameter(request, "provinceAreaId", 0);
         Integer cityAreaId = ServletRequestUtils.getIntParameter(request,"cityAreaId",0);
         Integer countyAreaId = ServletRequestUtils.getIntParameter(request,"countyAreaId",0);
         List<Base> baseList = basesService.queryBaseList(provinceAreaId, cityAreaId, countyAreaId);
@@ -122,7 +125,7 @@ public class CourseController extends BaseController{
     @ResponseBody
     public String save(HttpServletRequest request,HttpServletResponse response){
         UserInfo user = getUser(request);
-        Integer provinceAreaId = ServletRequestUtils.getIntParameter(request,"provinceAreaId",0);
+        Integer provinceAreaId = ServletRequestUtils.getIntParameter(request, "provinceAreaId", 0);
         Integer cityAreaId = ServletRequestUtils.getIntParameter(request,"cityAreaId",0);
         Integer countyAreaId = ServletRequestUtils.getIntParameter(request, "countyAreaId", 0);
         Integer baseId = ServletRequestUtils.getIntParameter(request, "baseId", 0);
@@ -135,7 +138,7 @@ public class CourseController extends BaseController{
         courseService.saveCourse(provinceAreaId,cityAreaId,countyAreaId,baseId,beginDate,endDate,
                                     className,jsonArray,user);
         JSONObject json = new JSONObject();
-        json.put("status","success");
+        json.put("status", "success");
         return json.toString();
     }
 
@@ -148,7 +151,8 @@ public class CourseController extends BaseController{
     @RequestMapping(value="/courseList")
     public String courseList(HttpServletRequest request, HttpServletResponse response){
         UserInfo user = getUser(request);
-        List<TecentAreaInfo> provinceList = AreaManage.getProviceList();
+        List<TecentAreaInfo> provinceList = new ArrayList<>();
+        provinceList.addAll(AreaManage.getProviceList());
         Integer provinceAreaId = null;
         if(user.getUserType() == UserType.ADMIN.getCODE()){
             TecentAreaInfo tecentAreaInfo = new TecentAreaInfo();
@@ -199,14 +203,100 @@ public class CourseController extends BaseController{
         return "course/courseDetail";
     }
 
+    /**
+     *删除班次
+     * @param request
+     * @param response
+     * @return
+     */
+    @RequestMapping(value="/deleteClass",method= RequestMethod.POST)
+    @ResponseBody
+    public String deleteClass(HttpServletRequest request,HttpServletResponse response){
+        Integer classScheduleId = ServletRequestUtils.getIntParameter(request, "classScheduleId", 0);
+        courseService.deleteClass(classScheduleId);
+        JSONObject json = new JSONObject();
+        json.put("status", "success");
+        return json.toString();
+    }
+
     @RequestMapping(value = "/getTwoDimension",method={RequestMethod.POST,RequestMethod.GET})
     public void getTwoDimensionForIOSs(HttpServletRequest request,HttpServletResponse response){
+        Integer classScheduleId = Integer.valueOf(request.getParameter("classScheduleId"));
         QRCodeUtil matrixToImageWriters = new QRCodeUtil();
         try {
-            matrixToImageWriters.getTwoDimension("www.baidu.com", response, 200, 200);
+            matrixToImageWriters.getTwoDimension(URL + "course/wechatDetail?classScheduleId="+classScheduleId, response, 200, 200);
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    /**
+     * 跳转添编辑
+     * @param request
+     * @param response
+     * @return
+     */
+    @RequestMapping(value="/courseEdit")
+    public String courseEdit(HttpServletRequest request, HttpServletResponse response){
+        Integer classScheduleId = Integer.valueOf(request.getParameter("id"));
+        CourseSchedule courseSchedule = courseService.queryCourseScheduleById(classScheduleId);
+        List<CourseModel> courseModelList = courseService.queryCourseDetail(classScheduleId);
+        List<Base> baseList = basesService.queryBaseList(courseSchedule.getBase().getProvinceAreaId(),
+                courseSchedule.getBase().getCityAreaId(), courseSchedule.getBase().getCountyAreaId());
+        request.setAttribute("provinceList", AreaManage.getProviceList());
+        request.setAttribute("cityList",AreaManage.getCityMap().get(courseSchedule.getProvinceAreaId()));
+        request.setAttribute("countyList",AreaManage.getAreaMap().get(courseSchedule.getCityAreaId()));
+        request.setAttribute("classScheduleId",classScheduleId);
+        request.setAttribute("courseModelList",courseModelList);
+        request.setAttribute("courseSchedule",courseSchedule);
+        request.setAttribute("baseList",baseList);
+        return "course/courseEdit";
+    }
+
+
+    /**
+     * 时间改变---编辑获取课程列表
+     * @param request
+     * @param response
+     * @return
+     */
+    @RequestMapping(value="/editGetCourseList",method= RequestMethod.POST)
+    @ResponseBody
+    public String editGetCourseList(HttpServletRequest request,HttpServletResponse response){
+        UserInfo user = getUser(request);
+        String beginTime = ServletRequestUtils.getStringParameter(request, "beginTime", null);
+        String endTime = ServletRequestUtils.getStringParameter(request, "endTime", null);
+        Integer courseScheduleId = ServletRequestUtils.getIntParameter(request,"courseScheduleId",0);
+        List<CourseModel> courseModelList = courseService.queryEditCourseList(courseScheduleId,beginTime,endTime);
+        return new Gson().toJson(courseModelList);
+    }
+
+    /**
+     * 编辑课程
+     * @param request
+     * @param response
+     * @return
+     */
+    @RequestMapping(value="/edit",method= RequestMethod.POST)
+    @ResponseBody
+    public String edit(HttpServletRequest request,HttpServletResponse response){
+        UserInfo user = getUser(request);
+        Integer courseScheduleId = ServletRequestUtils.getIntParameter(request,"courseScheduleId",0);
+        Integer provinceAreaId = ServletRequestUtils.getIntParameter(request,"provinceAreaId",0);
+        Integer cityAreaId = ServletRequestUtils.getIntParameter(request,"cityAreaId",0);
+        Integer countyAreaId = ServletRequestUtils.getIntParameter(request, "countyAreaId", 0);
+        Integer baseId = ServletRequestUtils.getIntParameter(request, "baseId", 0);
+        String beginDate = ServletRequestUtils.getStringParameter(request,"beginDate",null);
+        String endDate = ServletRequestUtils.getStringParameter(request,"endDate",null);
+        String className = ServletRequestUtils.getStringParameter(request,"className",null);
+        String courseArr = ServletRequestUtils.getStringParameter(request, "courseArr", null);
+        JSONArray jsonArray = JSONArray.parseArray(courseArr);
+        System.out.println(jsonArray.toString());
+        courseService.saveEditCourse(courseScheduleId,provinceAreaId, cityAreaId, countyAreaId, baseId, beginDate, endDate,
+                className,jsonArray,user);
+        JSONObject json = new JSONObject();
+        json.put("status","success");
+        return json.toString();
     }
 
     /**

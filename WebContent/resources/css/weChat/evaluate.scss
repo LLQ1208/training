@@ -1,0 +1,117 @@
+@function pxToRem ($px) {
+  @return $px /37.5px * 1rem
+}
+body,html{
+  background: #f5f5f5 !important;
+  padding-bottom:pxToRem(18px) !important;
+}
+.teacher{
+  background:#5dbbe9;
+  width:pxToRem(375px);
+  //height:pxToRem(110px);
+  padding:pxToRem(25px) 0;
+  span{
+    display:block;
+    font-size:pxToRem(20px);
+    color:#fff;
+    letter-spacing:pxToRem(-0.39px);
+    text-align:center;
+    width:pxToRem(330px);
+    margin:0 auto 0;
+  }
+}
+.submit{
+  background:#5dbbe9;
+  border-radius:pxToRem(100px);
+  width:pxToRem(167px);
+  height:pxToRem(44px);
+  font-size:pxToRem(16px);
+  color:#ffffff;
+  text-align:center;
+  margin:pxToRem(20px) auto 0;
+  line-height:pxToRem(44px);
+}
+.box{
+  width:pxToRem(375px);
+  height:pxToRem(469px);
+  .left{
+    width:pxToRem(24px);
+    .noon{
+      width:100%;
+      height:pxToRem(196px);
+      margin-top:pxToRem(67px);
+      background:#dadada;
+      font-size:pxToRem(14px);
+      color:#666666;
+      text-align:center;
+      padding-top:pxToRem(74px);
+      -webkit-box-sizing: border-box;
+      -moz-box-sizing: border-box;
+      box-sizing: border-box;
+    }
+    .noon:last-child{
+      margin-top:pxToRem(10px);
+    }
+  }
+  .right{
+    width:pxToRem(351px);
+    height:100%;
+    overflow-x: scroll;
+    .cont{
+      width:pxToRem(600px);
+      height:100%;
+      .day-one{
+        width:pxToRem(78px);
+        height: 100%;
+        .week{
+          width:pxToRem(78px);
+          height:pxToRem(67px);
+          float: left;
+          span{
+            display: block;
+            width:100%;
+            text-align: center;
+          }
+          span:first-child{
+            font-size:pxToRem(16px);
+            color:#666666;
+            margin-top:pxToRem(12px);
+          }
+          span:last-child{
+            font-size:pxToRem(14px);
+            color:#999999;
+          }
+        }
+        .classtypeCon{
+          -webkit-box-sizing: border-box;
+          -moz-box-sizing: border-box;
+          box-sizing: border-box;
+          width:pxToRem(78px);
+          height:pxToRem(196px);
+          float: left;
+          padding:pxToRem(8px) pxToRem(7px);
+          font-size:pxToRem(16px);
+          color:#ffffff;
+        }
+        .orange{
+          background:#ecb181;
+        }
+        .red{
+          background:#f99999;
+        }
+        .white{
+          background: #fff;
+        }
+        .blue{
+          background:#91ceec;
+        }
+        .green{
+          background:#7fd6c9;
+        }
+        .mt{
+          margin-top: pxToRem(10px);
+        }
+      }
+    }
+  }
+}

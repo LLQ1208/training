@@ -31,28 +31,12 @@ public class AuthenticationInterceptor implements HandlerInterceptor{
 		String xrw = request.getHeader("X-Requested-With");
 		String basePath = path.split("/")[1];
 		if("interface".equals(basePath) ||"login".equals(basePath) ||"logout".equals(basePath)
-				||"index".equals(basePath) ){
+				||"index".equals(basePath) || "weChat".equals(basePath)){
 			return true;
 		}
 		else{
 			UserInfo user =(UserInfo)request.getSession().getAttribute("currentUser");
 			if(user!=null){
-//				if(user.getUserType()==UserType.COACH.getCode()){
-//					if("member".equals(basePath)||"setting".equals(basePath)){
-//						response.sendRedirect(request.getContextPath()+"/noPermission");
-//						return false;
-//					}
-//				}else if(user.getUserType()==UserType.SUPPORTER.getCode()){
-//					if("courseContent".equals(basePath)||"setting".equals(basePath)){
-//						response.sendRedirect(request.getContextPath()+"/noPermission");
-//						return false;
-//					}
-//				}else if(user.getUserType()==UserType.MEMBER.getCode()){
-//					if("courseContent".equals(basePath)||"setting".equals(basePath)||"member".equals(basePath)){
-//						response.sendRedirect(request.getContextPath()+"/noPermission");
-//						return false;
-//					}
-//				}
 				return true;
 			}else if("XMLHttpRequest".equalsIgnoreCase(xrw)&&user==null){
 				response.setHeader("sessionstatus", "timeout");

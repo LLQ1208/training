@@ -13,7 +13,7 @@
     .nav .user .usericon {
       width: 47px;
       height: 47px;
-      background: url("../images/icon_temp.png");
+      background: url("../../resources/images/icon_temp.png");
       -webkit-background-size: cover;
       background-size: cover;
       margin: 26px auto 0; }
