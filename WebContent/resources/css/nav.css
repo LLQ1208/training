@@ -43,12 +43,14 @@
         .nav .list .listCommon .firstCommon .point {
           display: inline-block;
           width: 10px;
-          height: 6px;
-          background: #000;
+          height: 8px;
+          background: url("../images/icon_down.png") no-repeat;
           -webkit-background-size: cover;
-          background-size: cover; }
+          background-size: cover;
+          transform: rotateZ(90deg);
+          transition: .3s all ease;}
         .nav .list .listCommon .firstCommon .point.active {
-          background: red; }
+          transform: rotateZ(0deg); }
       .nav .list .listCommon .secondCommon {
         width: 100%;
         background: #366186;

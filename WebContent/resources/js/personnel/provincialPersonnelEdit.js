@@ -1,6 +1,4 @@
-/**
- * Created by anran on 2018/2/4.
- */
+
 $(function () {
     changeWin();
     $('.choose').selectpicker()

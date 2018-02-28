@@ -1,11 +1,11 @@
-/**
- * Created by anran on 2018/2/4.
- */
+
 $(function () {
     $('.firstCommon').on('click',function(){
+        $('.point').removeClass('active');
         $('.secondCommon').slideUp()
         if ($(this).siblings('.secondCommon').css('display')=='none'){
-            $(this).siblings('.secondCommon').slideDown()
+            $(this).siblings('.secondCommon').slideDown();
+            $(this).find('.point').addClass('active');
         }
     })
     // $('.final').on('click',function () {

@@ -14,7 +14,7 @@
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
 	<link rel="stylesheet" href="${ctx}/resources/css/login.css">
 	<script src="${ctx}/resources/js/jquery-1.11.3.min.js"></script>
-	<title>CFer3.0训练馆</title>
+	<title>政府在线问卷调查系统</title>
 </head>
 <body>
 

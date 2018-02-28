@@ -37,7 +37,7 @@
             <div class="listCommon">
                 <div class="firstCommon">
                     <span>课程管理</span>
-                    <span class="point"></span>
+                    <span class="point  ${group == 2 ? 'active':''}"></span>
                 </div>
                 <div class="secondCommon" style="${group == 2 ? 'display:block':'display:none'}">
                     <div class="final ${menuName == 'courseAdd' ? 'active':''}" href="${ctx}/course/courseAdd">添加课程</div>

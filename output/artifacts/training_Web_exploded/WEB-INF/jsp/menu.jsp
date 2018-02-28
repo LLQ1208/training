@@ -28,16 +28,16 @@
                     <span>权限管理</span>
                     <span class="point"></span>
                 </div>
-                <div class="secondCommon">
+                <div class="secondCommon" style="${group == 1 ? 'display:block':'display:none'}">
                     <div class="final">总管理员</div>
-                    <div class="final active">省级管理员</div>
-                    <div class="final active">基地管理员</div>
+                    <div class="final ${menuName == 'personnelAdd' ? 'active':''}" href="${ctx}/personnelController/personnelList?userType=2">省级管理员</div>
+                    <div class="final ${menuName == 'baseAdd' ? 'active':''}" href="${ctx}/personnelController/personnelList?userType=3">基地管理员</div>
                 </div>
             </div>
             <div class="listCommon">
                 <div class="firstCommon">
                     <span>课程管理</span>
-                    <span class="point"></span>
+                    <span class="point  ${group == 2 ? 'active':''}"></span>
                 </div>
                 <div class="secondCommon" style="${group == 2 ? 'display:block':'display:none'}">
                     <div class="final ${menuName == 'courseAdd' ? 'active':''}" href="${ctx}/course/courseAdd">添加课程</div>
