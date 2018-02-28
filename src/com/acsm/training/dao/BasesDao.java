@@ -12,4 +12,6 @@ public interface BasesDao extends BaseDao<Base>{
     Base queryById(int id);
 
     List<Base> queryListByArea(Integer provinceAreaId, Integer cityAreaId, Integer countyAreaId);
+
+    List<Base> queryListByProvinceArea(Integer provinceAreaId);
 }

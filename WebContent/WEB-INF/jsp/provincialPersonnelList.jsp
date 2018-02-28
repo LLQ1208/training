@@ -70,6 +70,7 @@
             </div>
         </div>
         <input type="hidden" id="ctx" value="${ctx}"/>
+        <input type="hidden" id="userType" value="${userType}"/>
     </div>
 <script src="../../resources/js/jquery-1.11.3.min.js"></script>
 <script src="../../resources/js/bootstrap.min.js"></script>

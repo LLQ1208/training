@@ -27,4 +27,9 @@ public class BasesServiceImpl implements BasesService{
     public Base queryById(Integer baseId) {
         return basesDao.queryById(baseId);
     }
+
+    @Override
+    public List<Base> queryListByProvinceArea(Integer provinceAreaId) {
+        return basesDao.queryListByProvinceArea(provinceAreaId);
+    }
 }

@@ -13,6 +13,11 @@ $(function () {
     $('.submit-btn').on('click',function () {
         personnelAdd();
     })
+    var userBaseId = $("#userBaseId").val();
+    if(null != userBaseId && "" != userBaseId && typeof (userBaseId) != "undefined"){
+        $("#proviceId").selectpicker("val", $("#userBaseId").val());
+        $("#proviceId").attr("disabled","disabled");
+    }
 
 });
 function changeWin() {

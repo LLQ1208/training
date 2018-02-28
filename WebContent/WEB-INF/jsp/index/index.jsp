@@ -24,7 +24,7 @@
 					<span class="point"></span>
 				</div>
 				<div class="secondCommon">
-					<div class="final">省级管理员</div>
+					<div class="final" >省级管理员</div>
 					<div class="final active">基地管理员</div>
 				</div>
 			</div>
@@ -60,6 +60,7 @@
 			</div>
 		</div>
 	</div>
+	<input type="hidden" id="ctx" value="${ctx}"/>
 </div>
 
 <script src="../../../resources/js/jquery-1.11.3.min.js"></script>

@@ -11,4 +11,6 @@ public interface BasesService {
     List<Base> queryBaseList(Integer provinceAreaId,Integer cityAreaId,Integer countyAreaId);
 
     Base queryById(Integer baseId);
+
+    List<Base> queryListByProvinceArea(Integer provinceAreaId);
 }

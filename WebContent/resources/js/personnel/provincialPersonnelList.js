@@ -16,7 +16,8 @@ $(function () {
 
     $('.addbtn').on('click',function () {
         var ctx = $("#ctx").val();
-        window.location = ctx+"/personnelController/addInit";
+        var userType = $("#userType").val().trim();
+        window.location = ctx+"/personnelController/addInit?userType="+userType;
     })
 
     $('.tocheck').on('click',function () {
@@ -48,7 +49,8 @@ function personnelListSearch() {
     var ctx = $("#ctx").val();
     var proviceId = $("#proviceId").val();
     var searchUserName = $("#searchUserName").val().trim();
-    var data = {proviceId:proviceId,searchUserName:searchUserName};
+    var userType = $("#userType").val().trim();
+    var data = {proviceId:proviceId,searchUserName:searchUserName,userType:userType};
     $.ajax({
         url: ctx + "/personnelController/personnelListSearch",
         type: 'POST', //POST

@@ -7,9 +7,17 @@ $(function () {
         if ($(this).siblings('.secondCommon').css('display')=='none'){
             $(this).siblings('.secondCommon').slideDown()
         }
-
     })
     $('.final').on('click',function () {
-        window.location.href = $(this).attr("href");
+        var ctx = $("#ctx").val();
+        console.log('--'+$(this).html()+'--');
+        var title = $(this).html();
+        if(title == '省级管理员'){
+            window.location.href = ctx+"/personnelController/personnelList?userType="+2;
+        }
+        if(title == '基地管理员'){
+            window.location.href = ctx+"/personnelController/personnelList?userType="+3;
+        }
+        // window.location.href = $(this).attr("href");
     })
 })

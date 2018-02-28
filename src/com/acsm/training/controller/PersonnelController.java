@@ -30,11 +30,27 @@ public class PersonnelController extends BaseController{
 	@Autowired
 	private TecentAreaInfoService tecentAreaInfoService;
 
+	@Autowired
+	private BasesService basesService;
 
 	@RequestMapping(value="/addInit")
 	public String addInitPersonnel(HttpServletRequest request, HttpServletResponse response){
 		List<TecentAreaInfo> areaInfoList = tecentAreaInfoService.queryProvinceList();
+		Integer userType = null != request.getParameter("userType") ? Integer.valueOf(request.getParameter("userType")) : UserType.PROVINCEADMIN.CODE;
+		Integer userBaseId = super.getUser(request).getBaseId();
+
+		if(null != userBaseId){
+			request.setAttribute("userBaseId",userBaseId);
+			List<Base> baseList = basesService.queryListByProvinceArea(userBaseId);
+			request.setAttribute("baseList",baseList);
+		}else{
+			List<Base> baseList = basesService.queryListByProvinceArea(110000);
+			request.setAttribute("baseList",baseList);
+		}
+
+
 		request.setAttribute("provincialList",areaInfoList);
+		request.setAttribute("userType",userType);
 		return "provincialPersonnelAdd";
 	}
 
@@ -97,6 +113,7 @@ public class PersonnelController extends BaseController{
 		Integer userType = null != request.getParameter("userType") ? Integer.valueOf(request.getParameter("userType")) : UserType.PROVINCEADMIN.CODE;
 		List<PersonnelInfo> personnelList = userInfoService.personnelList(areaId,searchUserName,userType);
 		request.setAttribute("personnelList",personnelList);
+		request.setAttribute("userType",userType);
 		return "provincialPersonnelList";
 	}
 

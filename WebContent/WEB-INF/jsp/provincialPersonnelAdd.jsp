@@ -44,6 +44,14 @@
                     <option value="">省级管理员</option>
                 </select>
             </div>
+            <div class="common" id="baseList">
+                <span class="common-title">基地列表：</span>
+                <select name="" class="choose">
+                    <c:forEach items="${baseList}" var="base">
+                        <option value="${base.id}">${base.baseName}</option>
+                    </c:forEach>
+                </select>
+            </div>
             <div class="common">
                 <span class="common-title">设置账号：</span>
                 <input type="text" id="userName">
@@ -56,6 +64,8 @@
         </div>
     </div>
     <input type="hidden" id="ctx" value="${ctx}"/>
+    <input type="hidden" id="userType" value="${userType}"/>
+    <input type="hidden" id="userBaseId" value="${userBaseId}"/>
 </div>
 
 <script src="../../resources/js/jquery-1.11.3.min.js"></script>

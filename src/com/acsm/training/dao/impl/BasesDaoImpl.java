@@ -34,4 +34,13 @@ public class BasesDaoImpl extends BaseDaoImpl<Base> implements BasesDao{
         q.setInteger("countyAreaId", countyAreaId);
         return q.list();
     }
+
+    @Override
+    public List<Base> queryListByProvinceArea(Integer provinceAreaId) {
+        String hql ="from Base where deleted=0 and provinceAreaId=:provinceAreaId ";
+        Session session = this.getSession();
+        Query q = session.createQuery(hql);
+        q.setInteger("provinceAreaId", provinceAreaId);
+        return q.list();
+    }
 }
