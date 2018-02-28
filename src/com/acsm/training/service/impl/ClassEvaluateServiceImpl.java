@@ -19,8 +19,9 @@ public class ClassEvaluateServiceImpl implements ClassEvaluateService {
     ClassEvaluateDao classEvaluateDao;
 
     @Override
-    public void addClassEvaluate(String studentName, String studentPhone, Integer areaId, Integer satisfaction, Integer accommodations, Integer considerate, Integer rationality, Integer serviceAttitude, Integer gain) {
+    public void addClassEvaluate(Integer classScheduleId,String studentName, String studentPhone, Integer areaId, Integer satisfaction, Integer accommodations, Integer considerate, Integer rationality, Integer serviceAttitude, Integer gain) {
         ClassEvaluate classEvaluate = new ClassEvaluate();
+        classEvaluate.setCourseScheduleId(classScheduleId);
         classEvaluate.setStudentName(studentName);
         classEvaluate.setStudentPhone(studentPhone);
         classEvaluate.setAreaId(areaId);

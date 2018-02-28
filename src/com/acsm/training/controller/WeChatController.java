@@ -95,8 +95,18 @@ public class WeChatController {
     @RequestMapping(value="/classSave",method= RequestMethod.POST)
     @ResponseBody
     public String classSave(HttpServletRequest request,HttpServletResponse response){
-
-        return "";
+        String name = request.getParameter("studentName");
+        String phone = request.getParameter("studentPhone");
+        Integer classScheduleId = Integer.valueOf(request.getParameter("classScheduleId"));
+        Integer areaId = Integer.valueOf(request.getParameter("areaId"));
+        Integer satisfaction = Integer.valueOf(request.getParameter("satisfaction"));
+        Integer accommodations = Integer.valueOf(request.getParameter("accommodations"));
+        Integer considerate = Integer.valueOf(request.getParameter("considerate"));
+        Integer rationality = Integer.valueOf(request.getParameter("rationality"));
+        Integer serviceAttitude = Integer.valueOf(request.getParameter("serviceAttitude"));
+        Integer gain = Integer.valueOf(request.getParameter("gain"));
+        classEvaluateService.addClassEvaluate(classScheduleId,name,phone,areaId,satisfaction,accommodations,considerate,rationality,serviceAttitude,gain);
+        return "succeed";
     }
 
     /**

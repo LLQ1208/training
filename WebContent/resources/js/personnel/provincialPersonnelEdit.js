@@ -13,7 +13,7 @@ $(function () {
     var userType = $("#userType").val();
     var userInfoType = $("#userInfoType").val();
     $("#proviceId").selectpicker("val", $("#areaId").val());
-    if(userInfoType != 0){
+    if(userInfoType != 1){
         $("#proviceId").attr("disabled","disabled");
     }
     if(userType != 3){

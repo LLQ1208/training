@@ -71,25 +71,38 @@ function checkout() {
 }
 
 function submitInfo() {
+    var phoneReg = /^1[34578]\d{9}$/;
     var classScheduleId = GetQueryString("classScheduleId");
     var url = "http://"+window.location.host+"/training";
     var studentName = $("#studentName").val();
     var studentPhone = $("#studentPhone").val();
     var areaId = $("#issue").val();
-    var evaluate = $("#evaluate").val();
+    var satisfaction = $("#satisfaction").val();
     var accommodations = $("#accommodations").find(".active").length;
     var considerate = $("#considerate").find(".active").length;
     var rationality = $("#rationality").find(".active").length;
     var serviceAttitude = $("#serviceAttitude").find(".active").length;
     var gain = $("#gain").find(".active").length;
 
+    var reg = new RegExp(phoneReg);
+    if(studentPhone == null || "" == studentPhone || !reg.test(studentPhone.trim())){
+        alert("请输入正确的电话号码");
+        return false;
+    }
+    if(studentName == null || "" == studentName){
+        alert("请输入正确用户名");
+        return false;
+    }
+    var data = {classScheduleId:classScheduleId,studentName:studentName,studentPhone:studentPhone,areaId:areaId,satisfaction:satisfaction,accommodations:accommodations,considerate:considerate,rationality:rationality,serviceAttitude:serviceAttitude,gain:gain};
+
     $.ajax({
-        url:url + "/weChat/getClassCity",
+        url:url + "/weChat/classSave",
         type:'POST', //GET
         async:true,    //或false,是否异步
-        data:{classScheduleId:classScheduleId},
+        data:data,
         dataType:'text',
         success:function(pager){
+            window.location.href = "http://"+window.location.host+"/training/weChat/evaluate.html?classScheduleId="+classScheduleId;
         },
         error:function(){
             console.log("error");

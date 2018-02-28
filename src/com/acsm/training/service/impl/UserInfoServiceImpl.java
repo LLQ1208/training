@@ -107,4 +107,9 @@ public class UserInfoServiceImpl implements UserInfoService{
         }
         userInfoDao.update(userInfo);
     }
+
+    @Override
+    public UserInfo queryUserByUserName(String userName) {
+        return userInfoDao.queryUserByUserName(userName);
+    }
 }

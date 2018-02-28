@@ -20,18 +20,18 @@ $(function () {
     //     }
     //     // window.location.href = $(this).attr("href");
     // })
-    // $('.final').on('click',function () {
-    //     var ctx = $("#ctx").val();
-    //     console.log('--'+$(this).html()+'--');
-    //     var title = $(this).html();
-    //     if(title == '省级管理员'){
-    //         window.location.href = ctx+"/personnelController/personnelList?userType="+2;
-    //     }
-    //     if(title == '基地管理员'){
-    //         window.location.href = ctx+"/personnelController/personnelList?userType="+3;
-    //     }
-    //     if(title != '省级管理员' && title != '基地管理员'){
-    //         window.location.href = $(this).attr("href");
-    //     }
-    // })
+    $('.final').on('click',function () {
+        var ctx = $("#ctx").val();
+        console.log('--'+$(this).html()+'--');
+        var title = $(this).html();
+        if(title == '省级管理员'){
+            window.location.href = ctx+"/personnelController/personnelList?userType=2";
+        }
+        if(title == '基地管理员'){
+            window.location.href = ctx+"/personnelController/personnelList?userType=3";
+        }
+        if(title != '省级管理员' && title != '基地管理员'){
+            window.location.href = $(this).attr("href");
+        }
+    })
 })

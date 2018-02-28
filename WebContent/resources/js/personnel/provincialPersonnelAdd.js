@@ -9,7 +9,7 @@ $(function () {
     })
 
     $('.submit-btn').on('click',function () {
-        personnelAdd();
+        checkOut();
     })
     var userBaseId = $("#userBaseId").val();
     if(null != userBaseId && "" != userBaseId && typeof (userBaseId) != "undefined"){
@@ -30,6 +30,30 @@ function changeWin() {
     })
 }
 $(window).resize(changeWin);
+
+function checkOut() {
+    var ctx = $("#ctx").val();
+    var userName = $("#userName").val();
+    var data = {userName:userName};
+
+    $.ajax({
+        url: ctx + "/personnelController/checkOut",
+        type: 'POST', //POST
+        async: true,    //或false,是否异步
+        data: data,
+        dataType: 'text',
+        success: function (data) {
+            if("succeed"== data){
+                personnelAdd();
+            }else{
+                alert("账户名已被使用！")
+            }
+        },
+        error: function () {
+            console.log("服务器错误，保存失败")
+        }
+    });
+}
 
 
 function personnelAdd() {

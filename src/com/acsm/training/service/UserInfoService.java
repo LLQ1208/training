@@ -27,4 +27,6 @@ public interface UserInfoService {
     public UserInfo queryById(Integer userId);
 
     public void updateUserInfo(Integer userId, String userName, String passWord, Integer proviceId,Integer baseListId);
+
+    public UserInfo queryUserByUserName(String userName);
 }

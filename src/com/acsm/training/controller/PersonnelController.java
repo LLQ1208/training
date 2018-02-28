@@ -176,4 +176,15 @@ public class PersonnelController extends BaseController{
 		pageHelper.setList(baseList);
 		return pageHelper;
 	}
+
+	@RequestMapping(value="/checkOut", method= RequestMethod.POST)
+	@ResponseBody
+	public String checkOut(HttpServletRequest request, HttpServletResponse response){
+		String userName = request.getParameter("userName");
+		UserInfo userInfo = userInfoService.queryUserByUserName(userName);
+		if(null != userInfo){
+			return "fail";
+		}
+		return "succeed";
+	}
 }
