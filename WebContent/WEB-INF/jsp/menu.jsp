@@ -29,7 +29,7 @@
                     <span class="point"></span>
                 </div>
                 <div class="secondCommon" style="${group == 1 ? 'display:block':'display:none'}">
-                    <div class="final">总管理员</div>
+                    <%--<div class="final">总管理员</div>--%>
                     <div class="final ${menuName == 'personnelAdd' ? 'active':''}" href="${ctx}/personnelController/personnelList?userType=2">省级管理员</div>
                     <div class="final ${menuName == 'baseAdd' ? 'active':''}" href="${ctx}/personnelController/personnelList?userType=3">基地管理员</div>
                 </div>

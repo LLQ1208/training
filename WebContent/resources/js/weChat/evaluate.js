@@ -44,13 +44,17 @@ $(function () {
                 }
                 $("#classList").html(html);
                 toEval();
-                $('.cont').css({'width': $('.day-one').width()*$('.day-one').length})
+                $('.cont').css({'width': $('.day-one').width()*$('.day-one').length+4})
             }
 
         },
         error:function(){
             console.log("error");
         }
+    });
+    $('.submit').on('click',function () {
+        var url = "http://"+window.location.host+"/training/weChat/classform.html?classScheduleId="+classScheduleId;
+        window.location.href = url;
     });
 })
 

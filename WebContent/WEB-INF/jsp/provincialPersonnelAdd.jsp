@@ -37,35 +37,35 @@
 
     <div class="container-box">
         <div class="list-block">
-            <div class="common">
-                <span class="common-title">地区：</span>
+            <div class="common clearfix">
+                <span class="common-title fl">地区：</span>
                 <select name="" class="choose" id="proviceId" onchange="baseListChange();">
                     <c:forEach items="${provincialList}" var="provice">
                         <option value="${provice.areaId}">${provice.name}</option>
                     </c:forEach>
                 </select>
             </div>
-            <div class="common">
-                <span class="common-title">管理员：</span>
+            <div class="common clearfix">
+                <span class="common-title fl">管理员：</span>
                 <%--<select name="" class="choose">--%>
                     <%--<option value="" id="managerId">省级管理员</option>--%>
                 <%--</select>--%>
                 <input id="managerId" readonly value="省级管理员">
             </div>
-            <div class="common" id="baseList">
-                <span class="common-title">基地列表：</span>
+            <div class="common clearfix" id="baseList">
+                <span class="common-title fl">基地列表：</span>
                 <select name="" class="choose" id="baseListId">
                     <c:forEach items="${baseList}" var="base">
                         <option value="${base.id}">${base.baseName}</option>
                     </c:forEach>
                 </select>
             </div>
-            <div class="common">
-                <span class="common-title">设置账号：</span>
+            <div class="common clearfix">
+                <span class="common-title fl">设置账号：</span>
                 <input type="text" id="userName">
             </div>
-            <div class="common">
-                <span class="common-title">登录密码：</span>
+            <div class="common clearfix">
+                <span class="common-title fl">登录密码：</span>
                 <input type="text" id="passWord">
             </div>
             <div class="submit-btn">确定添加</div>

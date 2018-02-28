@@ -43,7 +43,7 @@
 <%--<script type="text/javascript" src="${ctx}/resources/js/jquery-1.11.3.min.js"></script>--%>
 <script type="text/javascript" src="${ctx}/resources/js/login.js"></script>
 <script type="text/javascript">
-	$('#login').css({'height':$(window).height()})
+    $('#login').css({'height':$(window).height()})
 </script>
 </body>
 </html>

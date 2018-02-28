@@ -50,7 +50,7 @@ public class CourseController extends BaseController{
 
     private static final int PAGE_SIZE = 10;
 
-    private static final String URL = "http://192.168.202.1:8080/training/";
+    private static final String URL = "http://comet.s1.natapp.cc/training/";
     /**
      * 跳转添加
      * @param request

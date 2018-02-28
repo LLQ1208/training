@@ -60,6 +60,8 @@ function checkout() {
             if(pager =="succeed"){
                 console.log("--------------")
                 submitInfo();
+            }else{
+                alert("该同学已经评价过");
             }
         },
         error:function(){
@@ -71,11 +73,15 @@ function checkout() {
 function submitInfo() {
     var classScheduleId = GetQueryString("classScheduleId");
     var url = "http://"+window.location.host+"/training";
-
     var studentName = $("#studentName").val();
     var studentPhone = $("#studentPhone").val();
     var areaId = $("#issue").val();
     var evaluate = $("#evaluate").val();
+    var accommodations = $("#accommodations").find(".active").length;
+    var considerate = $("#considerate").find(".active").length;
+    var rationality = $("#rationality").find(".active").length;
+    var serviceAttitude = $("#serviceAttitude").find(".active").length;
+    var gain = $("#gain").find(".active").length;
 
     $.ajax({
         url:url + "/weChat/getClassCity",

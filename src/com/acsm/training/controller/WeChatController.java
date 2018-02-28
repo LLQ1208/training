@@ -85,10 +85,18 @@ public class WeChatController {
         String studentName = request.getParameter("studentName");
         String studentPhone = request.getParameter("studentPhone");
         List<Object[]> object = classEvaluateService.queryByNameByPhoneById(classScheduleId,studentName,studentPhone);
-        if(null != object.get(0) && null != object.get(0)[0] && Integer.valueOf(object.get(0)[0].toString()) != 0){
+        Integer sumCalc = Integer.valueOf(object.get(0)[0].toString());
+        if((null != sumCalc) && (sumCalc != 0)){
             return "fail";
         }
         return "succeed";
+    }
+
+    @RequestMapping(value="/classSave",method= RequestMethod.POST)
+    @ResponseBody
+    public String classSave(HttpServletRequest request,HttpServletResponse response){
+
+        return "";
     }
 
     /**

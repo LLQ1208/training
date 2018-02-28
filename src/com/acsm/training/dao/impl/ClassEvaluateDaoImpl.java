@@ -22,7 +22,7 @@ public class ClassEvaluateDaoImpl extends BaseDaoImpl<ClassEvaluate> implements 
     @Override
     public List<Object[]> queryByNameByPhoneById(Integer id, String name, String phone) {
         StringBuffer sql = new StringBuffer();
-        sql.append(" select count(*) from class_evaluate where course_schedule_id = ").append(id);
+        sql.append(" select count(*),id from class_evaluate where course_schedule_id = ").append(id);
         sql.append(" and student_name = '").append(name).append("'");
         sql.append(" and student_phone = '").append(phone).append("'");
         return this.queryBySql(sql.toString());
