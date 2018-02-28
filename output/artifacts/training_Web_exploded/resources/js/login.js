@@ -32,7 +32,7 @@ $(function(){
             },
             success: function(rs){
                 if(rs.result){
-                    window.location = ctx+"/index";
+                    window.location = ctx+"/course/courseAdd";
                 }else{
                     $("#showMesg").html(rs.msg);
                     console.log("login fail");

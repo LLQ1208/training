@@ -22,7 +22,7 @@
 	<!--first login page start-->
 	<div class="login">
 		<div class="top">
-			<div class="logo"></div>
+			<div class="logo">政府在线问卷调查系统</div>
 		</div>
 		<div class="bottom clearfix">
 			<div class="user">
@@ -34,14 +34,7 @@
 				<input type="password" id="password" class="words fl" placeholder="输入登录密码">
 			</div>
 			<div id="showMesg" class="login-mesg"></div>
-			<div class="remember">
-				<input type="checkbox" id="ck_rmbUser">&nbsp;<span>记住密码</span>
-				<a href="${ctx}/toForgetPassWord" class="fr forget">忘记密码</a>
-			</div>
 			<button class="loginBtn" id="loginBtn" >登录</button>
-			<div class="loginOpen">
-				没有账号？<a href="${ctx}/toOpen" class="toOpen">我要开馆</a>
-			</div>
 		</div>
 	</div>
 

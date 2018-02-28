@@ -89,9 +89,9 @@ body{
     min-height: 768px;
     width: 100%;
     height: 100%;
-    background: url("../images/login/login.jpg");
+    /*//background: url("../images/login/login.jpg");
     -webkit-background-size: cover;
-    background-size: cover; }
+    background-size: cover;*/ }
 #login .login {
     width: 456px;
     height: 408px;
@@ -110,12 +110,12 @@ body{
     box-shadow: 0 8px 15px 0px #454954; }
 
 #login .login .top .logo {
-    width: 122px;
+    width: 100%;
     height: 68px;
     margin: 0 auto;
-    background: url("../images/login/logo_03.png");
-    -webkit-background-size: cover;
-    background-size: cover; }
+    text-align: center;
+    line-height: 68px;
+    color: #fff;}
 #login .login .bottom {
     width: 362px;
     height: 292px;
@@ -180,8 +180,8 @@ body{
 #login .login .bottom .loginBtn {
     width: 362px;
     height: 48px;
-    background: #fc340e;
-    margin-top: 12px;
+    background: #1e4478;
+    margin-top: 42px;
     text-align: center;
     line-height: 48px;
     color: #fff;
