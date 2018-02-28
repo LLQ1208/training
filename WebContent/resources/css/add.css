@@ -154,15 +154,15 @@
   left: 0;
   background: rgba(255, 255, 255, 0); }
 .box .container-box .pop-box .pop-content {
-  width: 300px;
-  height: 200px;
+  width: 400px;
+  height: 240px;
   background: rgba(0, 0, 0, 0.6);
   border-radius: 20px;
   position: absolute;
   top: 50%;
   left: 50%;
-  margin-left: -150px;
-  margin-top: -100px; }
+  margin-left: -200px;
+  margin-top: -120px;}
 .box .container-box .pop-box .pop-content h4 {
   width: 100%;
   height: 40px;
@@ -171,12 +171,13 @@
   font-weight: normal;
   font-size: 16px;
   margin-top: 0;
-  color: #fff; }
+  color: #fff;
+  margin-bottom: 20px;}
 .box .container-box .pop-box .pop-content .class-detail {
   width: 100%;
   height: 32px;
-  margin-bottom: 12px;
-  padding: 0 20px;
+  margin-bottom: 16px;
+  padding: 0 30px;
   box-sizing: border-box; }
 .box .container-box .pop-box .pop-content .class-detail p {
   width: 80px;
@@ -185,7 +186,7 @@
   color: #fff;
   font-size: 14px; }
 .box .container-box .pop-box .pop-content .class-detail input {
-  width: 150px;
+  width: 250px;
   height: 32px;
   background: none;
   border-bottom: 1px solid #dfdfdf;
@@ -194,7 +195,7 @@
 .box .container-box .pop-box .pop-content .pop-btn {
   width: 100%;
   height: 30px;
-  margin-top: 20px; }
+  margin-top: 36px; }
 .box .container-box .pop-box .pop-content .pop-btn a {
   width: 66px;
   height: 30px;
@@ -205,7 +206,7 @@
   background: #69a0d0; }
 .box .container-box .pop-box .pop-content .pop-btn .cancel {
   background: #ccc;
-  margin: 0 12px 0 78px; }
+  margin: 0 22px 0 128px; }
 
 .br {
   border-right: 1px solid #d7d7d7; }

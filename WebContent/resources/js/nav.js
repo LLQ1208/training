@@ -18,6 +18,8 @@ $(function () {
         if(title == '基地管理员'){
             window.location.href = ctx+"/personnelController/personnelList?userType="+3;
         }
-        // window.location.href = $(this).attr("href");
+        if(title != '省级管理员' && title != '基地管理员'){
+            window.location.href = $(this).attr("href");
+        }
     })
 })

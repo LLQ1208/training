@@ -53,8 +53,9 @@
         </div>
         <div class="editorBtn">
             <div class="btnone" id="backButton">返回</div>
+            <div class="btnone" id="editButton" style="margin-right: 26px;">编辑</div>
             <div class="btnone" id="deletedButton">删除</div>
-            <div class="btnone" id="editButton">编辑</div>
+
         </div>
     </div>
 </div>

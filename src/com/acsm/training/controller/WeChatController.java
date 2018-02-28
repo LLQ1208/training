@@ -2,10 +2,13 @@ package com.acsm.training.controller;/**
  * Created by lq on 2018/2/28.
  */
 
+import com.acsm.training.dao.TeacherEvalDao;
 import com.acsm.training.manage.AreaManage;
+import com.acsm.training.model.Course;
 import com.acsm.training.model.CourseSchedule;
 import com.acsm.training.model.TecentAreaInfo;
 import com.acsm.training.model.page.CourseModel;
+import com.acsm.training.model.page.EvalLevel;
 import com.acsm.training.service.CourseService;
 import com.acsm.training.service.WetChatService;
 import com.alibaba.fastjson.JSONObject;
@@ -19,6 +22,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -34,8 +38,10 @@ public class WeChatController {
     WetChatService wetChatService;
     @Autowired
     CourseService courseService;
+
+
     /**
-     * 省-市联动
+     * 进入手机课程页
      * @param request
      * @param response
      * @return
@@ -52,4 +58,57 @@ public class WeChatController {
         json.put("list",courseModelList);
         return json.toString();
     }
+
+    /**
+     * 进去老师评价页
+     * @param request
+     * @param response
+     * @return
+     */
+    @RequestMapping(value="/teachEval",method= RequestMethod.GET)
+    @ResponseBody
+    public String teachEval(HttpServletRequest request,HttpServletResponse response){
+        Integer courseId = Integer.valueOf(request.getParameter("courseId"));
+        Course course = courseService.queryCourseById(courseId);
+        List<TecentAreaInfo> provinceList = new ArrayList<>();
+        provinceList.addAll(AreaManage.getProviceList());
+        JSONObject json = new JSONObject();
+        json.put("provinceList",provinceList);
+        json.put("courseId",courseId);
+        json.put("course",course);
+        json.put("evalLevelList", getEvalLevelList());
+        return json.toString();
+    }
+
+    /**
+     * 老师评价提交
+     * @param request
+     * @param response
+     * @return
+     */
+    @RequestMapping(value="/teachEvalSave",method= RequestMethod.POST)
+    @ResponseBody
+    public String teachEvalSave(HttpServletRequest request,HttpServletResponse response){
+        Integer courseId = ServletRequestUtils.getIntParameter(request, "courseId", 0);
+        String studentName = ServletRequestUtils.getStringParameter(request, "studentName", null);
+        String phone = ServletRequestUtils.getStringParameter(request, "phone", null);
+        Integer provinceAreaId = ServletRequestUtils.getIntParameter(request, "provinceAreaId", 0);
+        Integer evalId = ServletRequestUtils.getIntParameter(request, "evalId", 0);
+        Integer starEvalOne = ServletRequestUtils.getIntParameter(request, "starEvalOne", 0);
+        Integer starEvalTwo = ServletRequestUtils.getIntParameter(request, "starEvalTwo", 0);
+        Integer starEvalThree = ServletRequestUtils.getIntParameter(request, "starEvalThree", 0);
+        JSONObject json = wetChatService.saveTeacherEval(courseId,studentName,phone,provinceAreaId,evalId,
+                starEvalOne,starEvalTwo,starEvalThree);
+        return json.toString();
+    }
+
+    private List<EvalLevel> getEvalLevelList(){
+        List<EvalLevel> evalLevelList = new ArrayList<EvalLevel>(){{
+            add(new EvalLevel(1,"很好"));
+            add(new EvalLevel(2,"一版"));
+            add(new EvalLevel(3,"不好"));
+        }};
+        return evalLevelList;
+    }
+
 }

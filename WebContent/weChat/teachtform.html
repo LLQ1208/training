@@ -3,30 +3,35 @@
 <head>
     <meta charset="UTF-8">
     <title>教师评价表</title>
-    <link rel="stylesheet" href="../css/reset.css">
-    <link rel="stylesheet" href="../css/bootstrap3.min.css">
-    <link rel="stylesheet" href="../css/bootstrap-select.min.css">
-    <link rel="stylesheet" href="../css/teachtform.css">
-    <script src="../js/flexible.js"></script>
+    <link rel="stylesheet" href="../resources/css/weChat/reset.css">
+    <link rel="stylesheet" href="../resources/css/weChat/bootstrap3.min.css">
+    <link rel="stylesheet" href="../resources/css/weChat/bootstrap-select.min.css">
+    <link rel="stylesheet" href="../resources/css/weChat/teachtform.css">
+    <script src="../resources/js/weChat/flexible.js"></script>
 </head>
 <body>
 <div class="teacher clearfix">
-    <span>跟张教授学种瓜示范培训班授课效果评价</span>
+    <span id="className">跟张教授学种瓜示范培训班授课效果评价</span>
 </div>
 <div class="tForm clearfix">
     <div class="tCommon">
         <div class="type">
             学员姓名
-            <span style="color: #eb5e5e;">*</span>
+            <span style="color: #eb5e5e;" >*</span>
         </div>
-        <input type="text" placeholder="请输入">
+        <input type="text" id="studentName" class="input-student" placeholder="请输入">
+        <div class="type">
+            手机号
+            <span style="color: #eb5e5e;" >*</span>
+        </div>
+        <input type="text" id="phone" class="input-student"  placeholder="请输入">
     </div>
     <div class="tCommon">
         <div class="type">
             来自省份
             <span style="color: #eb5e5e;">*</span>
         </div>
-        <select name="" id="" class="select">
+        <select name="" id="province" class="select">
             <option value="">请选择</option>
             <option value="">请选择1</option>
         </select>
@@ -35,9 +40,8 @@
         <div class="type">
             您对本次讲座授课教师的评价
         </div>
-        <select name="" id="" class="select">
+        <select name="" id="eval" class="select">
             <option value="">请选择</option>
-            <option value="">请选择1</option>
         </select>
     </div>
 </div>
@@ -45,7 +49,7 @@
     <div class="left fl">
         内容完整性和针对性
     </div>
-    <div class="right fr">
+    <div class="right fr star-eval-one" evalId="1">
         <span class="stars start1 active"></span>
         <span class="stars start1"></span>
         <span class="stars start1"></span>
@@ -57,7 +61,7 @@
     <div class="left fl">
         讲授形式鲜活性、启发性
     </div>
-    <div class="right fr">
+    <div class="right fr star-eval-two" evalId="2">
         <span class="stars start2 active"></span>
         <span class="stars start2"></span>
         <span class="stars start2"></span>
@@ -69,7 +73,7 @@
     <div class="left fl">
         整体教学效果
     </div>
-    <div class="right fr">
+    <div class="right fr star-eval-three" evalId="3">
         <span class="stars start3 active"></span>
         <span class="stars start3"></span>
         <span class="stars start3"></span>
@@ -77,10 +81,13 @@
         <span class="stars start3"></span>
     </div>
 </div>
+<input type="hidden" id="courseId" value="">
+<input type="hidden" id="classScheduleId" value="">
 <div class="submit">提交</div>
-<script src="../js/jquery-1.11.3.min.js"></script>
-<script src="../js/bootstrap.min.js"></script>
-<script src="../js/bootstrap-select.min.js"></script>
-<script src="../js/teachtform.js"></script>
+<script src="../resources/js/weChat/jquery-1.11.3.min.js"></script>
+<script src="../resources/js/weChat/bootstrap.min.js"></script>
+<script src="../resources/js/weChat/bootstrap-select.min.js"></script>
+<script src="../resources/js/weChat/url.js"></script>
+<script src="../resources/js/weChat/teachtform.js"></script>
 </body>
 </html>

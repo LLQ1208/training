@@ -1,5 +1,6 @@
 package com.acsm.training.service;
 
+import com.acsm.training.model.Course;
 import com.acsm.training.model.CourseSchedule;
 import com.acsm.training.model.UserInfo;
 import com.acsm.training.model.basic.PageHelper;
@@ -42,4 +43,6 @@ public interface CourseService {
     List<CourseModel> queryEditCourseList(int classScheduleId,String beginDate,String endDate);
 
     void deleteClass(int classScheduleId);
+
+    Course queryCourseById(int id);
 }

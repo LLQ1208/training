@@ -79,7 +79,8 @@ body, html {
           float: left;
           padding: 0.21333rem 0.18667rem;
           font-size: 0.42667rem;
-          color: #ffffff; }
+          color: #ffffff;
+          border: 1px solid #dadada;}
         .box .right .cont .day-one .orange {
           background: #ecb181; }
         .box .right .cont .day-one .red {

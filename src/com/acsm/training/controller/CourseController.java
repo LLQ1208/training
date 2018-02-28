@@ -224,7 +224,7 @@ public class CourseController extends BaseController{
         Integer classScheduleId = Integer.valueOf(request.getParameter("classScheduleId"));
         QRCodeUtil matrixToImageWriters = new QRCodeUtil();
         try {
-            matrixToImageWriters.getTwoDimension(URL + "course/wechatDetail?classScheduleId="+classScheduleId, response, 200, 200);
+            matrixToImageWriters.getTwoDimension(URL + "weChat/evaluate.html?classScheduleId="+classScheduleId, response, 200, 200);
         } catch (IOException e) {
             e.printStackTrace();
         }

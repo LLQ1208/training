@@ -309,5 +309,10 @@ public class CourseServiceImpl implements CourseService {
         }
     }
 
+    @Override
+    public Course queryCourseById(int id) {
+        return courseDao.queryById(id);
+    }
+
 
 }

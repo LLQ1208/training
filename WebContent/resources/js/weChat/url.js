@@ -1,4 +1,4 @@
-var url = "http://localhost:8080/training/";
+var url = "http://"+window.location.host+"/training/";
 
 function GetQueryString(name) {
     var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
