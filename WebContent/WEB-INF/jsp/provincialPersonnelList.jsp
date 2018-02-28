@@ -9,24 +9,30 @@
 <head>
     <meta charset="UTF-8">
     <title>课程后台</title>
-    <link rel="stylesheet" href="../../resources/css/reset.css">
-    <link rel="stylesheet" href="../../resources/css/bootstrap3.min.css">
-    <link rel="stylesheet" href="../../resources/css/bootstrap-select.min.css">
-    <link rel="stylesheet" href="../../resources/css/nav.css">
-    <link rel="stylesheet" href="../../resources/css/personnel/administration.css">
+    <link rel="stylesheet" href="${ctx}/resources/css/reset.css">
+    <link rel="stylesheet" href="${ctx}/resources/css/bootstrap3.min.css">
+    <link rel="stylesheet" href="${ctx}/resources/css/bootstrap-select.min.css">
+    <link rel="stylesheet" href="${ctx}/resources/css/nav.css">
+    <link rel="stylesheet" href="${ctx}/resources/css/personnel/administration.css">
 </head>
 <body>
     <div class="box clearfix">
-        <div class="nav fl clearfix">
-            <div class="user clearfix">
-                <div class="usericon">
-                </div>
-                <span>总管理员</span>
-            </div>
-            <div class="list">
-                <div></div>
-            </div>
+        <div class="nav fl clearfix" style="width: 151px;">
+            <jsp:include page="menu.jsp" flush="false" >
+                <jsp:param value="${userType == 2 ? personnelAdd : baseAdd}" name="menuName"/>
+                <jsp:param value="1" name="group"/>
+            </jsp:include>
         </div>
+        <%--<div class="nav fl clearfix">--%>
+            <%--<div class="user clearfix">--%>
+                <%--<div class="usericon">--%>
+                <%--</div>--%>
+                <%--<span>总管理员</span>--%>
+            <%--</div>--%>
+            <%--<div class="list">--%>
+                <%--<div></div>--%>
+            <%--</div>--%>
+        <%--</div>--%>
 
         <div class="container-box">
             <div class="searchlist">
@@ -36,7 +42,7 @@
                 </div>
                 <div class="searchbtn">搜索</div>
                 <div class="direct">地区</div>
-                <select name="" id="proviceId" class="directChange" >
+                <select name="" id="proviceId" class="directChange">
                     <c:forEach items="${provincialList}" var="provice">
                         <option value="${provice.areaId}">${provice.name}</option>
                     </c:forEach>
@@ -71,10 +77,11 @@
         </div>
         <input type="hidden" id="ctx" value="${ctx}"/>
         <input type="hidden" id="userType" value="${userType}"/>
+        <input type="hidden" id="userBaseId" value="${userBaseId}"/>
     </div>
-<script src="../../resources/js/jquery-1.11.3.min.js"></script>
-<script src="../../resources/js/bootstrap.min.js"></script>
-<script src="../../resources/js/bootstrap-select.min.js"></script>
-<script src="../../resources/js/personnel/provincialPersonnelList.js"></script>
+<script src="${ctx}/resources/js/jquery-1.11.3.min.js"></script>
+<script src="${ctx}/resources/js/bootstrap.min.js"></script>
+<script src="${ctx}/resources/js/bootstrap-select.min.js"></script>
+<script src="${ctx}/resources/js/personnel/provincialPersonnelList.js"></script>
 </body>
 </html>

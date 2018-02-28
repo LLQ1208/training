@@ -9,11 +9,11 @@
 <head>
     <meta charset="UTF-8">
     <title>课程后台</title>
-    <link rel="stylesheet" href="../../resources/css/reset.css">
-    <link rel="stylesheet" href="../../resources/css/bootstrap3.min.css">
-    <link rel="stylesheet" href="../../resources/css/bootstrap-select.min.css">
-    <link rel="stylesheet" href="../../resources/css/nav.css">
-    <link rel="stylesheet" href="../../resources/css/personnel/addadmin.css">
+    <link rel="stylesheet" href="${ctx}/resources/css/reset.css">
+    <link rel="stylesheet" href="${ctx}/resources/css/bootstrap3.min.css">
+    <link rel="stylesheet" href="${ctx}/resources/css/bootstrap-select.min.css">
+    <link rel="stylesheet" href="${ctx}/resources/css/nav.css">
+    <link rel="stylesheet" href="${ctx}/resources/css/personnel/addadmin.css">
 </head>
 <body>
 <div class="box clearfix">
@@ -42,8 +42,14 @@
                     <option value="">省级管理员</option>
                 </select>
             </div>
+            <div class="common" id="baseList" >
+                <span class="common-title">基地列表：</span>
+                <select name="" class="choose" id="baseListId" disabled:true>
+                    <option id="viewBase" value="viewProvice">${baseName}</option>
+                </select>
+            </div>
             <div class="common">
-                <span class="common-title">设置账号：</span>
+                <span class="common-title">账号：</span>
                 <input type="text" readonly id="userName" value="${userName}">
             </div>
             <%--<div class="common">--%>
@@ -54,11 +60,12 @@
         </div>
     </div>
     <input type="hidden" id="ctx" value="${ctx}"/>
+    <input type="hidden" id="userType" value="${userType}"/>
 </div>
 
-<script src="../../resources/js/jquery-1.11.3.min.js"></script>
-<script src="../../resources/js/bootstrap.min.js"></script>
-<script src="../../resources/js/bootstrap-select.min.js"></script>
-<script src="../../resources/js/personnel/provincialPersonnelAdd.js"></script>
+<script src="${ctx}/resources/js/jquery-1.11.3.min.js"></script>
+<script src="${ctx}/resources/js/bootstrap.min.js"></script>
+<script src="${ctx}/resources/js/bootstrap-select.min.js"></script>
+<script src="${ctx}/resources/js/personnel/provincialPersonnelAdd.js"></script>
 </body>
 </html>

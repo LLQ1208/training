@@ -11,7 +11,7 @@
 </head>
 <body>
 <div class="teacher clearfix">
-    <span>跟张教授学种瓜示范培训班基地培训效果调查问卷</span>
+    <span id="title" >跟张教授学种瓜示范培训班基地培训效果调查问卷</span>
 </div>
 <div class="tForm clearfix">
     <div class="tCommon">
@@ -19,25 +19,33 @@
             学员姓名
             <span style="color: #eb5e5e;">*</span>
         </div>
-        <input type="text" placeholder="请输入">
+        <input type="text" placeholder="请输入" id="studentName">
+    </div>
+    <div class="tCommon">
+        <div class="type">
+            手机号码
+            <span style="color: #eb5e5e;">*</span>
+        </div>
+        <input type="text" placeholder="请输入" id="studentPhone">
     </div>
     <div class="tCommon">
         <div class="type">
             来自省份
             <span style="color: #eb5e5e;">*</span>
         </div>
-        <select name="" id="" class="select">
-            <option value="">请选择</option>
-            <option value="">请选择1</option>
+        <select name="" id="issue" class="select">
         </select>
     </div>
     <div class="tCommon">
         <div class="type">
             您对本次讲座授课教师的评价
         </div>
-        <select name="" id="111" class="select">
-            <option value="">请选择</option>
-            <option value="">请选择1</option>
+        <select name="" id="evaluate" class="select">
+            <option value="1">很满意</option>
+            <option value="2">满意</option>
+            <option value="3">一般</option>
+            <option value="4">不满意</option>
+            <option value="5">很不满意</option>
         </select>
     </div>
 </div>
@@ -45,7 +53,7 @@
     <div class="left fl">
         食宿条件和水平
     </div>
-    <div class="right fr">
+    <div class="right fr" id="accommodations">
         <span class="stars start1 active"></span>
         <span class="stars start1"></span>
         <span class="stars start1"></span>

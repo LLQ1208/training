@@ -104,4 +104,9 @@ public class WeChatServiceImpl implements WetChatService{
         }
         return json;
     }
+
+    @Override
+    public CourseSchedule queryById(Integer id) {
+        return courseScheduleDao.queryById(id);
+    }
 }

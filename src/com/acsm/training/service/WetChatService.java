@@ -18,4 +18,5 @@ public interface WetChatService {
     JSONObject saveTeacherEval(Integer courseId,String studentName,String phone,Integer provinceAreaId,
                          Integer evalId,Integer starEvalOne,Integer starEvalTwo,Integer starEvalThree);
 
+    CourseSchedule queryById(Integer id);
 }

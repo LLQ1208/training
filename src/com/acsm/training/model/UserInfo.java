@@ -19,6 +19,7 @@ public class UserInfo implements Serializable{
     private String userName;
     private Integer userType;
     private Integer baseId;
+    private Integer baseInfoId;
     private Base base;
     @Id
     @GeneratedValue
@@ -70,6 +71,16 @@ public class UserInfo implements Serializable{
     public void setBaseId(Integer baseId) {
         this.baseId = baseId;
     }
+
+    @Column(name="base_info_id")
+    public Integer getBaseInfoId() {
+        return baseInfoId;
+    }
+
+    public void setBaseInfoId(Integer baseInfoId) {
+        this.baseInfoId = baseInfoId;
+    }
+
     @Transient
     public Base getBase() {
         return base;

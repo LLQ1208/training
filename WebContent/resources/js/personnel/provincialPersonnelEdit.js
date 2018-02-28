@@ -12,7 +12,18 @@ $(function () {
     $('.submit-btn').on('click',function () {
         personnelEdit();
     })
+    var userType = $("#userType").val();
+    var userInfoType = $("#userInfoType").val();
     $("#proviceId").selectpicker("val", $("#areaId").val());
+    if(userInfoType != 0){
+        $("#proviceId").attr("disabled","disabled");
+    }
+    if(userType != 3){
+        $("#baseList").hide();
+    } else{
+        $("#managerId").val('基地管理员');
+    }
+
 });
 function changeWin() {
     $('.box').css({
@@ -30,6 +41,7 @@ function personnelEdit() {
     var passWord =  $("#passWord").val().trim();
     var proviceId =  $("#proviceId").val();
     var userId =  $("#userId").val();
+    var userType = $("#userType").val();
     // if(userName.trim() =='' ){
     //     alert("账号名称不能为空")
     //     return false;
@@ -52,19 +64,61 @@ function personnelEdit() {
         return false;
     }
 
-    var data = {userId:userId,userName:userName,passWord:passWord,proviceId:proviceId};
+    if(userType  != 3){
+        var data = {userId:userId,userName:userName,passWord:passWord,proviceId:proviceId,userType:userType};
+    }else{
+        var baseListId = $("#baseListId").val();
+        var data = {userId:userId,userName:userName,passWord:passWord,proviceId:proviceId,userType:userType,baseListId:baseListId};
+    }
+
+    // var data = {userId:userId,userName:userName,passWord:passWord,proviceId:proviceId};
 
     $.ajax({
         url: ctx + "/personnelController/updatePersonnel",
         type: 'POST', //POST
         async: true,    //或false,是否异步
         data: data,
-        dataType: 'json',
+        dataType: 'text',
         success: function (data) {
-            alert('成功');
+            if("succeed"== data){
+                if(userType == 2){
+                    window.location.href = ctx+"/personnelController/personnelList?userType="+2;
+                }
+                if(userType == 3){
+                    window.location.href = ctx+"/personnelController/personnelList?userType="+3;
+                }
+            }
         },
         error: function () {
             console.log("服务器错误，保存失败")
         }
     });
+}
+
+function baseListChange() {
+    var ctx = $("#ctx").val();
+    var proviceId =  $("#proviceId").val();
+    var userType = $("#userType").val();
+    if(userType == 3){
+        var data = {proviceId:proviceId}
+        $.ajax({
+            url: ctx + "/personnelController/baseListChange",
+            type: 'POST', //POST
+            async: true,    //或false,是否异步
+            data: data,
+            dataType: 'json',
+            success: function (pager) {
+                var list = pager.list;
+                var htmls = ''
+                $.each(list, function (i, base) {
+                    htmls += '<option value="'+base.id+'">'+base.baseName+'</option>';
+                });
+                $("#baseListId").html(htmls);
+                $("#baseListId").selectpicker('refresh');
+            },
+            error: function () {
+                console.log("服务器错误，保存失败")
+            }
+        });
+    }
 }

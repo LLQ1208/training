@@ -19,6 +19,7 @@ $(function () {
         var userType = $("#userType").val().trim();
         window.location = ctx+"/personnelController/addInit?userType="+userType;
     })
+    var userType = $("#userType").val().trim();
 
     $('.tocheck').on('click',function () {
         var ctx = $("#ctx").val();
@@ -26,7 +27,7 @@ $(function () {
         var el = $(this);
         var id = el.closest('.tabCommon').find('#personnelId').val();
         console.log('id  '+id);
-        window.location = ctx+"/personnelController/personnelView?Id="+id;
+        window.location = ctx+"/personnelController/personnelView?Id="+id+"&userType="+userType;
     })
 
     $('.editPersonnel').on('click',function () {
@@ -34,8 +35,15 @@ $(function () {
         var el = $(this);
         var id = el.closest('.tabCommon').find('#personnelId').val();
         console.log('id  '+id);
-        window.location = ctx+"/personnelController/updatePersonnelInit?Id="+id;
+        window.location = ctx+"/personnelController/updatePersonnelInit?Id="+id+"&userType="+userType;
     })
+
+    var userBaseId = $("#userBaseId").val();
+    if(null != userBaseId && "" != userBaseId && typeof (userBaseId) != "undefined"){
+        $("#proviceId").selectpicker("val", $("#userBaseId").val());
+        $("#proviceId").attr("disabled","disabled");
+    }
+
 });
 function changeWin() {
     $('.box').css({
@@ -78,14 +86,14 @@ function personnelListSearch() {
                 var el = $(this);
                 var id = el.closest('.tabCommon').find('#personnelId').val();
                 console.log('id  '+id);
-                window.location = ctx+"/personnelController/personnelView?Id="+id;
+                window.location = ctx+"/personnelController/personnelView?Id="+id+"&userType="+userType;
             })
             $('.editPersonnel').on('click',function () {
                 var ctx = $("#ctx").val();
                 var el = $(this);
                 var id = el.closest('.tabCommon').find('#personnelId').val();
                 console.log('id  '+id);
-                window.location = ctx+"/personnelController/updatePersonnelInit?Id="+id;
+                window.location = ctx+"/personnelController/updatePersonnelInit?Id="+id+"&userType="+userType;
             })
         },
         error: function () {

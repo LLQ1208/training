@@ -5,11 +5,14 @@ package com.acsm.training.controller;/**
 import com.acsm.training.dao.TeacherEvalDao;
 import com.acsm.training.manage.AreaManage;
 import com.acsm.training.model.Course;
+import com.acsm.training.model.ClassEvaluateModel;
 import com.acsm.training.model.CourseSchedule;
 import com.acsm.training.model.TecentAreaInfo;
 import com.acsm.training.model.page.CourseModel;
 import com.acsm.training.model.page.EvalLevel;
+import com.acsm.training.service.ClassEvaluateService;
 import com.acsm.training.service.CourseService;
+import com.acsm.training.service.TecentAreaInfoService;
 import com.acsm.training.service.WetChatService;
 import com.alibaba.fastjson.JSONObject;
 import com.google.gson.Gson;
@@ -40,6 +43,10 @@ public class WeChatController {
     CourseService courseService;
 
 
+    @Autowired
+    private TecentAreaInfoService tecentAreaInfoService;
+    @Autowired
+    private ClassEvaluateService classEvaluateService;
     /**
      * 进入手机课程页
      * @param request
@@ -57,6 +64,31 @@ public class WeChatController {
         json.put("className",courseSchedule.getClassName());
         json.put("list",courseModelList);
         return json.toString();
+    }
+
+    @RequestMapping(value="/getClassCity",method= RequestMethod.GET)
+    @ResponseBody
+    public ClassEvaluateModel getClassCity(HttpServletRequest request, HttpServletResponse response){
+        List<TecentAreaInfo> areaInfoList = tecentAreaInfoService.queryProvinceList();
+        Integer classScheduleId = Integer.valueOf(request.getParameter("classScheduleId"));
+        CourseSchedule courseSchedule = courseService.queryCourseScheduleById(classScheduleId);
+        ClassEvaluateModel classEvaluateModel = new ClassEvaluateModel();
+        classEvaluateModel.setTitle(courseSchedule.getClassName());
+        classEvaluateModel.setList(areaInfoList);
+        return classEvaluateModel;
+    }
+
+    @RequestMapping(value="/getClassCheckOut",method= RequestMethod.POST)
+    @ResponseBody
+    public String getClassCheckOut(HttpServletRequest request, HttpServletResponse response){
+        Integer classScheduleId = Integer.valueOf(request.getParameter("classScheduleId"));
+        String studentName = request.getParameter("studentName");
+        String studentPhone = request.getParameter("studentPhone");
+        List<Object[]> object = classEvaluateService.queryByNameByPhoneById(classScheduleId,studentName,studentPhone);
+        if(null != object.get(0) && null != object.get(0)[0] && Integer.valueOf(object.get(0)[0].toString()) != 0){
+            return "fail";
+        }
+        return "succeed";
     }
 
     /**

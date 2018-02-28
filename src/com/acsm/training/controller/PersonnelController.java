@@ -59,12 +59,26 @@ public class PersonnelController extends BaseController{
 		List<TecentAreaInfo> areaInfoList = tecentAreaInfoService.queryProvinceList();
 		request.setAttribute("provincialList",areaInfoList);
 		Integer userInfoId = null != request.getParameter("Id") ? Integer.valueOf(request.getParameter("Id")) : null;
+		Integer userType = null != request.getParameter("userType") ? Integer.valueOf(request.getParameter("userType")) : UserType.PROVINCEADMIN.CODE;
+		request.setAttribute("userInfoType",super.getUser(request).getUserType());
 		if(null != userInfoId){
 			UserInfo userInfo =  userInfoService.queryById(userInfoId);
 			request.setAttribute("userName",userInfo.getUserName());
 			request.setAttribute("areaId",userInfo.getBaseId());
 			request.setAttribute("userId",userInfoId);
+
+			Integer userBaseId = userInfo.getBaseId();
+			if(null != userBaseId){
+				request.setAttribute("userBaseId",userBaseId);
+				List<Base> baseList = basesService.queryListByProvinceArea(userBaseId);
+				request.setAttribute("baseList",baseList);
+			}
+//			else{
+//				List<Base> baseList = basesService.queryListByProvinceArea(110000);
+//				request.setAttribute("baseList",baseList);
+//			}
 		}
+		request.setAttribute("userType",userType);
 		return "provincialPersonnelEdit";
 	}
 
@@ -73,6 +87,7 @@ public class PersonnelController extends BaseController{
 		List<TecentAreaInfo> areaInfoList = tecentAreaInfoService.queryProvinceList();
 		request.setAttribute("provincialList",areaInfoList);
 		Integer userInfoId = null != request.getParameter("Id") ? Integer.valueOf(request.getParameter("Id")) : null;
+		Integer userType = null != request.getParameter("userType") ? Integer.valueOf(request.getParameter("userType")) : UserType.PROVINCEADMIN.CODE;
 
 		if(null != userInfoId){
 			UserInfo userInfo =  userInfoService.queryById(userInfoId);
@@ -80,27 +95,49 @@ public class PersonnelController extends BaseController{
 				TecentAreaInfo tecentAreaInfo = tecentAreaInfoService.queryByAreaId(userInfo.getBaseId());
 				request.setAttribute("areaName",tecentAreaInfo.getFullName());
 			}
+			if(userType == 3){
+				Base base = basesService.queryById(userInfo.getBaseInfoId());
+				request.setAttribute("baseName",base.getBaseName());
+			}
+
 			request.setAttribute("userName",userInfo.getUserName());
 		}
+		request.setAttribute("userType",userType);
 		return "provincialPersonnelView";
 	}
 
 	@RequestMapping(value="/addPersonnel", method= RequestMethod.POST)
+	@ResponseBody
 	public String addPersonnel(HttpServletRequest request, HttpServletResponse response){
 		String userName = request.getParameter("userName");
 		String passWord = request.getParameter("passWord");
 		Integer proviceId = Integer.valueOf(request.getParameter("proviceId"));
-		userInfoService.addUserInfo(userName,passWord,proviceId);
+		Integer userType = Integer.valueOf(request.getParameter("userType"));
+
+		if(userType != 3){
+			userInfoService.addUserInfo(userName,passWord,proviceId,null,userType);
+		}else{
+			Integer baseListId = Integer.valueOf(request.getParameter("baseListId"));
+			userInfoService.addUserInfo(userName,passWord,proviceId,baseListId,userType);
+		}
 		return "succeed";
 	}
 
 	@RequestMapping(value="/updatePersonnel", method= RequestMethod.POST)
+	@ResponseBody
 	public String updatePersonnel(HttpServletRequest request, HttpServletResponse response){
 		String userName = request.getParameter("userName");
 		String passWord = request.getParameter("passWord");
 		Integer proviceId = Integer.valueOf(request.getParameter("proviceId"));
 		Integer userInfoId = null != request.getParameter("userId") ? Integer.valueOf(request.getParameter("userId")) : null;
-		userInfoService.updateUserInfo(userInfoId,userName,passWord,proviceId);
+		Integer userType = Integer.valueOf(request.getParameter("userType"));
+
+		if(userType != 3){
+			userInfoService.updateUserInfo(userInfoId,userName,passWord,proviceId,null);
+		}else{
+			Integer baseListId = Integer.valueOf(request.getParameter("baseListId"));
+			userInfoService.updateUserInfo(userInfoId,userName,passWord,proviceId,baseListId);
+		}
 		return "succeed";
 	}
 
@@ -112,6 +149,7 @@ public class PersonnelController extends BaseController{
 		Integer areaId = null != request.getParameter("areaId") ? Integer.valueOf(request.getParameter("areaId")) : 110000;
 		Integer userType = null != request.getParameter("userType") ? Integer.valueOf(request.getParameter("userType")) : UserType.PROVINCEADMIN.CODE;
 		List<PersonnelInfo> personnelList = userInfoService.personnelList(areaId,searchUserName,userType);
+		request.setAttribute("userBaseId",super.getUser(request).getBaseId());
 		request.setAttribute("personnelList",personnelList);
 		request.setAttribute("userType",userType);
 		return "provincialPersonnelList";
@@ -126,6 +164,16 @@ public class PersonnelController extends BaseController{
 		List<PersonnelInfo> personnelList = userInfoService.personnelList(areaId,searchUserName,userType);
 		PageHelper pageHelper = new PageHelper();
 		pageHelper.setList(personnelList);
+		return pageHelper;
+	}
+
+	@RequestMapping(value="/baseListChange", method= RequestMethod.POST)
+	@ResponseBody
+	public  PageHelper<Base> baseListChange(HttpServletRequest request, HttpServletResponse response){
+		Integer areaId = null != request.getParameter("proviceId") ? Integer.valueOf(request.getParameter("proviceId")) : 110000;
+		List<Base> baseList = basesService.queryListByProvinceArea(areaId);
+		PageHelper pageHelper = new PageHelper();
+		pageHelper.setList(baseList);
 		return pageHelper;
 	}
 }

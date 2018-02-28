@@ -64,6 +64,6 @@
 </div>
 
 <script src="../../../resources/js/jquery-1.11.3.min.js"></script>
-<script src="../../../resources/js/nav.js"></script>
+<script src="../../../resources/js/nav .js"></script>
 </body>
 </html>

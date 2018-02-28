@@ -20,11 +20,11 @@ public interface UserInfoService {
      */
     public CommonResult login(HttpSession session, String userName, String password);
 
-    public void addUserInfo(String userName, String passWord, Integer proviceId);
+    public void addUserInfo(String userName, String passWord, Integer proviceId,Integer baseListId,Integer userType);
 
     public List<PersonnelInfo> personnelList(Integer areaId, String searchUserName, Integer userType);
 
     public UserInfo queryById(Integer userId);
 
-    public void updateUserInfo(Integer userId, String userName, String passWord, Integer proviceId);
+    public void updateUserInfo(Integer userId, String userName, String passWord, Integer proviceId,Integer baseListId);
 }

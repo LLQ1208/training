@@ -18,7 +18,12 @@ $(function () {
         $("#proviceId").selectpicker("val", $("#userBaseId").val());
         $("#proviceId").attr("disabled","disabled");
     }
-
+    var userType = $("#userType").val();
+    if(userType != 3){
+        $("#baseList").hide();
+    }else{
+        $("#managerId").val('基地管理员');
+    }
 });
 function changeWin() {
     $('.box').css({
@@ -34,6 +39,7 @@ function personnelAdd() {
     var userName = $("#userName").val();
     var passWord =  $("#passWord").val();
     var proviceId =  $("#proviceId").val();
+    var userType = $("#userType").val();
     if(userName.trim() =='' ){
         alert("账号名称不能为空")
         return false;
@@ -55,19 +61,60 @@ function personnelAdd() {
         console.log("省市区编码获取失败");
         return false;
     }
+    if(userType  != 3){
+        var data = {userName:userName,passWord:passWord,proviceId:proviceId,userType:userType};
+    }else{
+        var baseListId = $("#baseListId").val();
+        var data = {userName:userName,passWord:passWord,proviceId:proviceId,userType:userType,baseListId:baseListId};
+    }
 
-    var data = {userName:userName,passWord:passWord,proviceId:proviceId};
 
     $.ajax({
         url: ctx + "/personnelController/addPersonnel",
         type: 'POST', //POST
         async: true,    //或false,是否异步
         data: data,
-        dataType: 'json',
+        dataType: 'text',
         success: function (data) {
+            if("succeed"== data){
+                if(userType == 2){
+                    window.location.href = ctx+"/personnelController/personnelList?userType="+2;
+                }
+                if(userType == 3){
+                    window.location.href = ctx+"/personnelController/personnelList?userType="+3;
+                }
+            }
         },
         error: function () {
             console.log("服务器错误，保存失败")
         }
     });
+}
+
+function baseListChange() {
+    var ctx = $("#ctx").val();
+    var proviceId =  $("#proviceId").val();
+    var userType = $("#userType").val();
+    if(userType == 3){
+        var data = {proviceId:proviceId}
+        $.ajax({
+            url: ctx + "/personnelController/baseListChange",
+            type: 'POST', //POST
+            async: true,    //或false,是否异步
+            data: data,
+            dataType: 'json',
+            success: function (pager) {
+                var list = pager.list;
+                var htmls = ''
+                $.each(list, function (i, base) {
+                    htmls += '<option value="'+base.id+'">'+base.baseName+'</option>';
+                });
+                $("#baseListId").html(htmls);
+                $("#baseListId").selectpicker('refresh');
+            },
+            error: function () {
+                console.log("服务器错误，保存失败")
+            }
+        });
+    }
 }

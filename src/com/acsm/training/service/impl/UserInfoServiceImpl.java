@@ -48,14 +48,17 @@ public class UserInfoServiceImpl implements UserInfoService{
     }
 
     @Override
-    public void addUserInfo(String userName, String passWord,Integer proviceId) {
+    public void addUserInfo(String userName, String passWord,Integer proviceId,Integer baseListId,Integer userType) {
         String sha1Pwd = UserRegisterValidateUtil.encodePassword(passWord, "SHA");
         UserInfo userInfo = new UserInfo();
         userInfo.setUserName(userName);
         userInfo.setPassword(sha1Pwd);
-        userInfo.setUserType(UserType.PROVINCEADMIN.CODE);
+        userInfo.setUserType(userType);
         userInfo.setDeleted(0);
         userInfo.setBaseId(proviceId);
+        if(null != baseListId){
+            userInfo.setBaseInfoId(baseListId);
+        }
         userInfoDao.add(userInfo);
     }
 
@@ -91,7 +94,7 @@ public class UserInfoServiceImpl implements UserInfoService{
     }
 
     @Override
-    public void updateUserInfo(Integer userId,String userName, String passWord, Integer proviceId) {
+    public void updateUserInfo(Integer userId,String userName, String passWord, Integer proviceId,Integer baseListId) {
         UserInfo userInfo = userInfoDao.queryById(userId);
 //        userInfo.setUserName(userName);
         if(null!= passWord && !"undefined".equals(passWord) && !"".equals(passWord)){
@@ -99,6 +102,9 @@ public class UserInfoServiceImpl implements UserInfoService{
             userInfo.setPassword(sha1Pwd);
         }
         userInfo.setBaseId(proviceId);
+        if(null != baseListId){
+            userInfo.setBaseInfoId(baseListId);
+        }
         userInfoDao.update(userInfo);
     }
 }
