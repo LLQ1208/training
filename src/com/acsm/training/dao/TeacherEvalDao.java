@@ -7,5 +7,5 @@ import com.acsm.training.model.TeacherEval;
  */
 public interface TeacherEvalDao extends BaseDao<TeacherEval>{
 
-    TeacherEval queryByPhone(String phone);
+    TeacherEval queryByPhone(String phone,int courseId);
 }

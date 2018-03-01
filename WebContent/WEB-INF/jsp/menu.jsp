@@ -1,3 +1,4 @@
+<%@ page import="com.acsm.training.model.UserInfo" %>
 <%@ page contentType="text/html;charset=UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
@@ -6,6 +7,9 @@
 <c:set var="ctx" value="${pageContext.request.contextPath}"/>
 <c:set var="menuName" value="${pageContext.request.getParameter('menuName')}"/>
 <c:set var="group" value="${pageContext.request.getParameter('group')}"/>
+<%
+    UserInfo user = (UserInfo)request.getSession().getAttribute("currentUser");
+%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -40,7 +44,9 @@
                     <span class="point  ${group == 2 ? 'active':''}"></span>
                 </div>
                 <div class="secondCommon" style="${group == 2 ? 'display:block':'display:none'}">
-                    <div class="final ${menuName == 'courseAdd' ? 'active':''}" href="${ctx}/course/courseAdd">添加课程</div>
+                    <c:if test="${user.userType == 3}">
+                        <div class="final ${menuName == 'courseAdd' ? 'active':''}" href="${ctx}/course/courseAdd">添加课程</div>
+                    </c:if>
                     <div class="final ${menuName == 'classList' ? 'active':''}" href="${ctx}/course/courseList">课程列表</div>
                 </div>
             </div>

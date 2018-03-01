@@ -14,8 +14,8 @@ import org.springframework.stereotype.Repository;
 @Repository("teacherEvalDao")
 public class TeacherEvalDaoImpl extends BaseDaoImpl<TeacherEval> implements TeacherEvalDao{
     @Override
-    public TeacherEval queryByPhone(String phone) {
-        String hql ="from TeacherEval where phone=?";
+    public TeacherEval queryByPhone(String phone,int courseId) {
+        String hql ="from TeacherEval where phone=? and courseId="+courseId;
         return (TeacherEval) this.Queryobject(hql, phone);
     }
 }

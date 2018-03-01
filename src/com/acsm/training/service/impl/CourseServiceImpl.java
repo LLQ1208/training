@@ -198,7 +198,7 @@ public class CourseServiceImpl implements CourseService {
                 classModel.setArea(obj[1].toString());
                 classModel.setClassName(obj[4].toString());
                 classModel.setBaseAdmin(obj[5].toString());
-                classModel.setClassPersonNum(0);
+                classModel.setClassPersonNum(obj[7] == null ? 0 : Integer.valueOf(obj[7].toString()));
                 classModel.setCourseNum(Integer.valueOf(obj[6].toString()));
                 classModelList.add(classModel);
             }
@@ -211,7 +211,7 @@ public class CourseServiceImpl implements CourseService {
         //课总数
         returnPage.setTempParam1(courseScheduleDao.queryCourseNum(searchKey,provinceAreaId,userInfo));
         //参与人数
-        returnPage.setTempParam2(0);
+        returnPage.setTempParam2(courseScheduleDao.queryStudentNum(searchKey,provinceAreaId,userInfo));
         return returnPage;
     }
 

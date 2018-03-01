@@ -80,12 +80,12 @@ function toEval(){
         //判断时间
         var flag = false;
         if(isAm){
-            if(courseTime < nowTime && courseDate != (year+"/"+month+"/"+date) && hour > 10){
+            if((courseTime < nowTime) || (courseDate == (year+"/"+(month < 10 ? '0'+month:month)+"/"+(date < 10 ? '0'+date: date)) && hour > 10)){
                 flag = true;
             }
         }else{
-            if(courseTime < nowTime && courseDate != (year+"/"+month+"/"+date) && hour > 13){
-                flag = ture;
+            if((courseTime < nowTime) || (courseDate == (year+"/"+(month < 10 ? '0'+month:month)+"/"+(date < 10 ? '0'+date: date)) && hour > 13)){
+                flag = true;
             }
         }
         var courseId = $(this).attr("courseId");

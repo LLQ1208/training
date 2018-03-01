@@ -88,7 +88,7 @@ $(function () {
                                 '<input type="hidden" class="teacher" value="'+courseModel.courseAM.teacher+'">'+
                                 '<input type="hidden" class="courseId" value="'+courseModel.courseAM.id+'">';
                             }else{
-                                '<input type="hidden" class="courseName" value="">'+
+                                html +='<input type="hidden" class="courseName" value="">'+
                                 '<input type="hidden" class="teacher" value="">'+
                                 '<input type="hidden" class="courseId" value="">';
                             }

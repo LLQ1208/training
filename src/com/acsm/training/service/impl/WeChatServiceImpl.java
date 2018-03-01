@@ -82,7 +82,7 @@ public class WeChatServiceImpl implements WetChatService{
     public JSONObject saveTeacherEval(Integer courseId, String studentName, String phone, Integer provinceAreaId, Integer evalId,
                                 Integer starEvalOne,Integer starEvalTwo,Integer starEvalThree) {
         JSONObject json = new JSONObject();
-        TeacherEval teacherEval = teacherEvalDao.queryByPhone(phone);
+        TeacherEval teacherEval = teacherEvalDao.queryByPhone(phone,courseId);
         if(null == teacherEval){
             teacherEval = new TeacherEval();
             teacherEval.setCourseId(courseId);

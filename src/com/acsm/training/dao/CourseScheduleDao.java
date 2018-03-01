@@ -17,4 +17,6 @@ public interface CourseScheduleDao extends BaseDao<CourseSchedule>{
     PageHelper queryClassList(String searchKey,Integer provinceAreaId,UserInfo userInfo,int pageSize,int pageIndex);
 
     int queryCourseNum(String searchKey,Integer provinceAreaId,UserInfo userInfo);
+
+    int queryStudentNum(String searchKey,Integer provinceAreaId,UserInfo userInfo);
 }

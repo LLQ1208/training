@@ -38,7 +38,7 @@ public class UserInfoServiceImpl implements UserInfoService{
         System.out.println(sha1Pwd);
         if(user!=null && sha1Pwd.equals(user.getPassword())){
             if(user.getUserType() == UserType.BASEADMIN.getCODE()){
-                user.setBase(basesDao.queryById(user.getBaseId()));
+                user.setBase(basesDao.queryById(user.getBaseInfoId()));
             }
             session.setAttribute("currentUser",user);
             return new CommonResult(1, "success", true);

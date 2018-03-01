@@ -43,22 +43,22 @@ public class CourseScheduleDaoImpl extends BaseDaoImpl<CourseSchedule> implement
         PageHelper pageHelper = new PageHelper();
         StringBuffer sql = new StringBuffer();
         sql.append("select c.id,province.`name` as pname,city.`name` as cname, ");//0-2
-        sql.append(" county.`name` as tname,c.class_name,u.user_name,sum(1) ");//3-6
-        sql.append(" from course_schedule c, ");
-        sql.append(" base b, ");
-        sql.append(" tecent_area_info province, ");
-        sql.append(" tecent_area_info city, ");
-        sql.append(" tecent_area_info county, ");
-        sql.append(" user_info u, ");
-        sql.append(" course ");
+        sql.append(" county.`name` as tname,c.class_name,u.user_name,sum(1),sum(temp.studentNum) ");//3-7
+        sql.append(" from course_schedule c ");
+        sql.append(" LEFT JOIN base b on c.base_id=b.id ");
+        sql.append(" LEFT JOIN tecent_area_info province on province.area_id=b.procince_area_id ");
+        sql.append(" LEFT JOIN tecent_area_info city on city.area_id=b.city_area_id ");
+        sql.append(" LEFT JOIN tecent_area_info county on county.area_id=b.county_area_id ");
+        sql.append(" LEFT JOIN user_info u on u.id=c.insert_user ");
+        sql.append(" LEFT JOIN course on course.course_schedule_id=c.id ");
+        sql.append(" LEFT JOIN (select course.id as courseid,sum(1) as studentNum from course , teacher_eval t ");
+        sql.append(" where course.id=t.course_id ");
+        sql.append(" and course.deleted=0 and t.deleted=0 ");
+        sql.append(" GROUP by course.id) as temp  on temp.courseid=course.id");
         sql.append(" where ");
-        sql.append(" c.base_id=b.id ");
-        sql.append(" and b.procince_area_id = province.area_id  ");
-        sql.append(" and b.city_area_id = city.area_id  ");
-        sql.append(" and b.county_area_id = county.area_id  ");
-        sql.append(" and c.insert_user = u.id  ");
-        sql.append(" and c.id=course.course_schedule_id  ");
-        sql.append(" and c.deleted=0 ");
+        sql.append("  c.deleted=0 ");
+        sql.append(" and b.deleted=0 ");
+        sql.append(" and course.deleted=0 ");
         if(StringUtils.isNotEmpty(searchKey)){
             sql.append(" and (c.class_name like '%").append(searchKey).append("%'");
             sql.append(" or province.`name` like '%").append(searchKey).append("%'");
@@ -66,7 +66,7 @@ public class CourseScheduleDaoImpl extends BaseDaoImpl<CourseSchedule> implement
             sql.append(" or county.`name` like '%").append(searchKey).append("%')");
         }
         if(userInfo.getUserType() == UserType.BASEADMIN.getCODE()){
-            sql.append(" and c.base_id= ").append(userInfo.getBaseId());
+            sql.append(" and c.base_id= ").append(userInfo.getBaseInfoId());
         }
         if(provinceAreaId != null && provinceAreaId != 0  ){
             sql.append(" and b.procince_area_id= ").append(provinceAreaId);
@@ -98,7 +98,6 @@ public class CourseScheduleDaoImpl extends BaseDaoImpl<CourseSchedule> implement
         sql.append(" and b.procince_area_id = province.area_id  ");
         sql.append(" and b.city_area_id = city.area_id  ");
         sql.append(" and b.county_area_id = county.area_id  ");
-        sql.append(" and c.insert_user = u.id  ");
         sql.append(" and c.id=course.course_schedule_id  ");
         sql.append(" and c.deleted=0 ");
         if(StringUtils.isNotEmpty(searchKey)){
@@ -108,7 +107,7 @@ public class CourseScheduleDaoImpl extends BaseDaoImpl<CourseSchedule> implement
             sql.append(" or county.`name` like '%").append(searchKey).append("%')");
         }
         if(userInfo.getUserType() == UserType.BASEADMIN.getCODE()){
-            sql.append(" and c.base_id= ").append(userInfo.getBaseId());
+            sql.append(" and c.base_id= ").append(userInfo.getBaseInfoId());
         }
         if(provinceAreaId != null && provinceAreaId != 0  ){
             sql.append(" and b.procince_area_id= ").append(provinceAreaId);
@@ -119,6 +118,48 @@ public class CourseScheduleDaoImpl extends BaseDaoImpl<CourseSchedule> implement
         StringBuffer totalSql = new StringBuffer();
         totalSql.append("select sum(test.num) from (").append(sql.toString()).append(") test GROUP BY test.groupId");
         List<Object> list = this.queryBySql(totalSql.toString());
+        if(null != list && list.size() > 0){
+            return Integer.valueOf(list.get(0).toString());
+        }
+        return 0;
+    }
+
+    @Override
+    public int queryStudentNum(String searchKey, Integer provinceAreaId, UserInfo userInfo) {
+        StringBuffer sql = new StringBuffer();
+        sql.append("select sum(1) from (");
+        sql.append("select t.id as sum,1 as type  from  ");
+        sql.append(" course_schedule cs, ");
+        sql.append(" course, ");
+        sql.append(" teacher_eval t, ");
+        sql.append(" tecent_area_info province, ");
+        sql.append(" tecent_area_info city, ");
+        sql.append(" tecent_area_info county, ");
+        sql.append(" base b ");
+        sql.append(" where cs.id=course.course_schedule_id ");
+        sql.append(" and course.id=t.course_id ");
+        sql.append(" and cs.base_id=b.id ");
+        sql.append(" and province.area_id=b.procince_area_id  ");
+        sql.append(" and city.area_id=b.city_area_id ");
+        sql.append(" and county.area_id=b.county_area_id  ");
+        sql.append(" and course.deleted=0  ");
+        sql.append(" and t.deleted=0 ");
+        sql.append(" and b.deleted=0 ");
+        if(StringUtils.isNotEmpty(searchKey)){
+            sql.append(" and (cs.class_name like '%").append(searchKey).append("%'");
+            sql.append(" or province.`name` like '%").append(searchKey).append("%'");
+            sql.append(" or city.`name` like '%").append(searchKey).append("%'");
+            sql.append(" or county.`name` like '%").append(searchKey).append("%')");
+        }
+        if(userInfo.getUserType() == UserType.BASEADMIN.getCODE()){
+            sql.append(" and cs.base_id= ").append(userInfo.getBaseInfoId());
+        }
+        if(provinceAreaId != null && provinceAreaId != 0  ){
+            sql.append(" and b.procince_area_id= ").append(provinceAreaId);
+        }
+        sql.append(") as temp ");
+        sql.append(" group by temp.type");
+        List<Object> list = this.queryBySql(sql.toString());
         if(null != list && list.size() > 0){
             return Integer.valueOf(list.get(0).toString());
         }
