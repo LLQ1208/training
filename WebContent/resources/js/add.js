@@ -65,13 +65,13 @@ $(function () {
                 console.log(time(year, month, date, i));
                 dateHtml += '<div class="rightCommon fl">' +
                 '<div class="'+((i+1)%2 == 0 ? 'date-line':'')+'">' + time(year, month, date, i) + '</div>' +
-                '<div class="am course">' +
+                '<div class="am course" id="courseAmDiv'+i+'">' +
                 '<img src="'+ctx+'/resources/images/icon_plus.png" alt="" class="addIcon">' +
                 '<p class="content"></p>' +
                 '<input type="hidden" class="courseName" >' +
                 '<input type="hidden" class="teacher" >' +
                 '</div>' +
-                '<div class="pm course">' +
+                '<div class="pm course" id="coursePmDiv'+i+'">' +
                 '<img src="'+ctx+'/resources/images/icon_plus.png" alt="" class="addIcon">' +
                 '<p class="content"></p>' +
                 '<input type="hidden" class="courseName" >' +
@@ -81,6 +81,25 @@ $(function () {
                 '</div>';
             }
             $('.rightCont').html(dateHtml);
+            // 弹框
+            $('.addIcon').on('click', function () {
+                $("#courseName").val("");
+                $("#teacher").val("");
+                var courseDivId = $(this).parents(".course").attr("id");
+                $("#hideCourseDiv").val(courseDivId);
+                $('.pop-box').fadeIn();
+            });
+            $('.content').on('click', function () {
+                $("#courseName").val("");
+                $("#teacher").val("");
+                var courseDivId = $(this).parents(".course").attr("id");
+                var courseName = $(this).parents(".course").find(".courseName").val();
+                var teacher = $(this).parents(".course").find(".teacher").val();
+                $("#courseName").val(courseName);
+                $("#teacher").val(teacher);
+                $("#hideCourseDiv").val(courseDivId);
+                $('.pop-box').fadeIn();
+            });
             $('.rightCont .rightCommon:last').addClass('br');
             $('.rightCont').css({'width': $('.rightCommon').width() * $('.rightCommon').length});
         }

@@ -116,10 +116,8 @@ public class CourseServiceImpl implements CourseService {
         courseSchedule.setEndDate(DateUtil.StringToDate(endDate, "yyyy/MM/dd"));
         courseSchedule.setClassName(className);
         courseSchedule.setDeleted(0);
-        courseSchedule.setCreateTime(new Date());
-        courseSchedule.setInsertUser(userInfo.getId());
         courseSchedule.setBaseId(baseId);
-        courseScheduleDao.add(courseSchedule);
+        courseScheduleDao.update(courseSchedule);
 
         //全部删除
         List<Course> courseList = courseDao.queryList(courseScheduleId);

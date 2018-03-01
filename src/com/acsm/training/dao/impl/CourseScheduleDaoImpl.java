@@ -84,22 +84,22 @@ public class CourseScheduleDaoImpl extends BaseDaoImpl<CourseSchedule> implement
     @Override
     public int queryCourseNum(String searchKey, Integer provinceAreaId, UserInfo userInfo) {
         StringBuffer sql = new StringBuffer();
-        sql.append("select sum(1) as num, ");
-        sql.append(" 1 as groupId ");
-        sql.append(" from course_schedule c, ");
-        sql.append(" base b, ");
-        sql.append(" tecent_area_info province, ");
-        sql.append(" tecent_area_info city, ");
-        sql.append(" tecent_area_info county, ");
-        sql.append(" user_info u, ");
-        sql.append(" course ");
+        sql.append("select sum(1) AS num,1 AS groupId ");//3-7
+        sql.append(" from course_schedule c ");
+        sql.append(" LEFT JOIN base b on c.base_id=b.id ");
+        sql.append(" LEFT JOIN tecent_area_info province on province.area_id=b.procince_area_id ");
+        sql.append(" LEFT JOIN tecent_area_info city on city.area_id=b.city_area_id ");
+        sql.append(" LEFT JOIN tecent_area_info county on county.area_id=b.county_area_id ");
+        sql.append(" LEFT JOIN user_info u on u.id=c.insert_user ");
+        sql.append(" LEFT JOIN course on course.course_schedule_id=c.id ");
+        sql.append(" LEFT JOIN (select course.id as courseid,sum(1) as studentNum from course , teacher_eval t ");
+        sql.append(" where course.id=t.course_id ");
+        sql.append(" and course.deleted=0 and t.deleted=0 ");
+        sql.append(" GROUP by course.id) as temp  on temp.courseid=course.id");
         sql.append(" where ");
-        sql.append(" c.base_id=b.id ");
-        sql.append(" and b.procince_area_id = province.area_id  ");
-        sql.append(" and b.city_area_id = city.area_id  ");
-        sql.append(" and b.county_area_id = county.area_id  ");
-        sql.append(" and c.id=course.course_schedule_id  ");
-        sql.append(" and c.deleted=0 ");
+        sql.append("  c.deleted=0 ");
+        sql.append(" and b.deleted=0 ");
+        sql.append(" and course.deleted=0 ");
         if(StringUtils.isNotEmpty(searchKey)){
             sql.append(" and (c.class_name like '%").append(searchKey).append("%'");
             sql.append(" or province.`name` like '%").append(searchKey).append("%'");
