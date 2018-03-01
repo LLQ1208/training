@@ -9,6 +9,7 @@
 <c:set var="group" value="${pageContext.request.getParameter('group')}"/>
 <%
     UserInfo user = (UserInfo)request.getSession().getAttribute("currentUser");
+    request.setAttribute("userType",user.getUserType());
 %>
 <!DOCTYPE html>
 <html lang="en">
@@ -44,7 +45,7 @@
                     <span class="point  ${group == 2 ? 'active':''}"></span>
                 </div>
                 <div class="secondCommon" style="${group == 2 ? 'display:block':'display:none'}">
-                    <c:if test="${user.userType == 3}">
+                    <c:if test="${userType == 3}">
                         <div class="final ${menuName == 'courseAdd' ? 'active':''}" href="${ctx}/course/courseAdd">添加课程</div>
                     </c:if>
                     <div class="final ${menuName == 'classList' ? 'active':''}" href="${ctx}/course/courseList">课程列表</div>
