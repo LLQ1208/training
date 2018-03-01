@@ -91,6 +91,8 @@ function toEval(){
         var courseId = $(this).attr("courseId");
         if(flag){
             window.location.href = url + 'weChat/teachtform.html?courseId='+courseId;
+        }else{
+            alert("课程还未结束，不能评价");
         }
     })
 
