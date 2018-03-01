@@ -39,13 +39,13 @@ public class AreaManage {
             for(TecentAreaInfo provice : proviceList){
                 List<TecentAreaInfo> cityList = tecentAreaInfoService.queryCityList(provice.getAreaId());
                 cityMap.put(provice.getAreaId(),cityList);
-                if(areaMap == null || areaMap.isEmpty()){
+                /*if(areaMap == null || areaMap.isEmpty()){
                     areaMap = new HashMap<>();
                     for(TecentAreaInfo city : cityList){
                         List<TecentAreaInfo> areaList = tecentAreaInfoService.queryAreaList(city.getAreaId());
                         areaMap.put(city.getAreaId(),areaList);
                     }
-                }
+                }*/
             }
         }
 

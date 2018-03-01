@@ -124,7 +124,7 @@ $(function () {
                     if(null != data && undefined != data){
                         for(var i=0; i<data.length;i++){
                             var city = data[i];
-                            cityHtml += '<option value="'+city.areaId+'">'+city.name+'</option>';
+                            cityHtml += '<option value="'+city.areaId+'">'+city.fullName+'</option>';
                         }
                     }
                     $("#s_city").html(cityHtml);
@@ -156,7 +156,7 @@ $(function () {
                     if(null != data && undefined != data){
                         for(var i=0; i<data.length;i++){
                             var area = data[i];
-                            areaHtml += '<option value="'+area.areaId+'">'+area.name+'</option>';
+                            areaHtml += '<option value="'+area.areaId+'">'+area.fullName+'</option>';
                         }
                     }
                     $("#s_county").html(areaHtml);
