@@ -82,10 +82,10 @@ function search(page,type){
                         '<div>'+classModel.courseNum+'</div>'+
                         '<div class="classDetail" href="'+ctx+'/course/courseDetail?id='+classModel.classScheduleId+'">点击查看详情</div>'+
                         '<div class="qrCodedetail" classScheduleId="'+classModel.classScheduleId+'"><span></span><span>下载</span></div>'+
-                        '<div>';
+                        '</div>';
                     }
                 }
-                $(".table").html(html);
+                $("#tableList").html(html);
 
                 if(pageHelper.totalRow != 0){
                     $("#pagination").show();

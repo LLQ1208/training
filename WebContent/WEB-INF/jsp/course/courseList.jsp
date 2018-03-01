@@ -46,7 +46,7 @@
                 </c:forEach>
             </select>
         </div>
-        <div class="table">
+        <div class="table" id="tableList">
             <div class="tableTitle">
                 <div>序号</div>
                 <div>地区</div>
