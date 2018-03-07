@@ -87,7 +87,7 @@ public class WeChatController {
         List<Object[]> object = classEvaluateService.queryByNameByPhoneById(classScheduleId,studentName,studentPhone);
         Integer sumCalc = Integer.valueOf(object.get(0)[0].toString());
         if((null != sumCalc) && (sumCalc != 0)){
-            return "fail";
+            return "-1";
         }
         return "succeed";
     }

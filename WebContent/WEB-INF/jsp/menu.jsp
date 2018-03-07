@@ -9,7 +9,7 @@
 <c:set var="group" value="${pageContext.request.getParameter('group')}"/>
 <%
     UserInfo user = (UserInfo)request.getSession().getAttribute("currentUser");
-    request.setAttribute("userType",user.getUserType());
+    request.setAttribute("userInfoType",user.getUserType());
 %>
 <!DOCTYPE html>
 <html lang="en">
@@ -31,12 +31,16 @@
             <div class="listCommon">
                 <div class="firstCommon">
                     <span>权限管理</span>
-                    <span class="point"></span>
+                    <span class="point ${group == 1 ? 'active':''}"></span>
                 </div>
                 <div class="secondCommon" style="${group == 1 ? 'display:block':'display:none'}">
-                    <%--<div class="final">总管理员</div>--%>
-                    <div class="final ${menuName == 'personnelAdd' ? 'active':''}" href="${ctx}/personnelController/personnelList?userType=2">省级管理员</div>
-                    <div class="final ${menuName == 'baseAdd' ? 'active':''}" href="${ctx}/personnelController/personnelList?userType=3">基地管理员</div>
+                    <%--<c:if test="${userInfoType == 1}">--%>
+                        <%--<div class="final ${menuName == 'baseInfoAdd' ? 'active':''}" href="${ctx}/personnelController/baseInfoAdd">添加基地</div>--%>
+                    <%--</c:if>--%>
+                    <c:if test="${userInfoType == 3 || userInfoType == 1}">
+                        <div class="final ${menuName == 'personnelAdd' ? 'active':''}" href="${ctx}/personnelController/personnelList?userType=2">省级管理员</div>
+                    </c:if>
+                    <div class="final ${menuName == 'baseAdd' ? 'active':''}" href="${ctx}/personnelController/basePersonnelList?userType=3">基地管理员</div>
                 </div>
             </div>
             <div class="listCommon">
@@ -45,7 +49,7 @@
                     <span class="point  ${group == 2 ? 'active':''}"></span>
                 </div>
                 <div class="secondCommon" style="${group == 2 ? 'display:block':'display:none'}">
-                    <c:if test="${userType == 3}">
+                    <c:if test="${userInfoType == 3 || userInfoType == 1}">
                         <div class="final ${menuName == 'courseAdd' ? 'active':''}" href="${ctx}/course/courseAdd">添加课程</div>
                     </c:if>
                     <div class="final ${menuName == 'classList' ? 'active':''}" href="${ctx}/course/courseList">课程列表</div>
@@ -56,9 +60,9 @@
                     <span>评测管理</span>
                     <span class="point"></span>
                 </div>
-                <div class="secondCommon">
-                    <div class="final">1</div>
-                </div>
+                <%--<div class="secondCommon">--%>
+                    <%--<div class="final">1</div>--%>
+                <%--</div>--%>
             </div>
         </div>
     </div>

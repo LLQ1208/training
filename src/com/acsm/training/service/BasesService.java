@@ -13,4 +13,6 @@ public interface BasesService {
     Base queryById(Integer baseId);
 
     List<Base> queryListByProvinceArea(Integer provinceAreaId);
+
+    void addBaseInfo(String baseName,Integer province,Integer city,Integer county);
 }

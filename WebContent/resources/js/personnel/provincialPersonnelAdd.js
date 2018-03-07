@@ -87,6 +87,10 @@ function personnelAdd() {
         var data = {userName:userName,passWord:passWord,proviceId:proviceId,userType:userType};
     }else{
         var baseListId = $("#baseListId").val();
+        if(null == baseListId || baseListId == '' || typeof(baseListId) == "undefined"){
+            alert("基地信息不能为空");
+            return false;
+        }
         var data = {userName:userName,passWord:passWord,proviceId:proviceId,userType:userType,baseListId:baseListId};
     }
 

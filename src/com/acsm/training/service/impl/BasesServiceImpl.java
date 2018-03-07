@@ -32,4 +32,15 @@ public class BasesServiceImpl implements BasesService{
     public List<Base> queryListByProvinceArea(Integer provinceAreaId) {
         return basesDao.queryListByProvinceArea(provinceAreaId);
     }
+
+    @Override
+    public void addBaseInfo(String baseName, Integer province, Integer city, Integer county) {
+        Base base = new Base();
+        base.setBaseName(baseName);
+        base.setDeleted(0);
+        base.setProvinceAreaId(province);
+        base.setCityAreaId(city);
+        base.setCountyAreaId(county);
+        basesDao.add(base);
+    }
 }

@@ -17,17 +17,12 @@
 </head>
 <body>
 <div class="box clearfix">
-    <div class="nav fl clearfix">
-        <div class="user clearfix">
-            <div class="usericon">
-            </div>
-            <span>总管理员</span>
-        </div>
-        <div class="list">
-            <div></div>
-        </div>
+    <div class="nav fl clearfix" style="width: 151px;">
+        <jsp:include page="menu.jsp" flush="false" >
+            <jsp:param value="personnelAdd" name="menuName"/>
+            <jsp:param value="1" name="group"/>
+        </jsp:include>
     </div>
-
     <div class="container-box">
         <div class="list-block">
             <div class="common clearfix">

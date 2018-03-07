@@ -1,6 +1,7 @@
 package com.acsm.training.controller;
 
 import com.acsm.training.enums.UserType;
+import com.acsm.training.manage.AreaManage;
 import com.acsm.training.model.Base;
 import com.acsm.training.model.PersonnelInfo;
 import com.acsm.training.model.TecentAreaInfo;
@@ -9,6 +10,7 @@ import com.acsm.training.model.basic.PageHelper;
 import com.acsm.training.service.BasesService;
 import com.acsm.training.service.TecentAreaInfoService;
 import com.acsm.training.service.UserInfoService;
+import com.acsm.training.util.DateUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,6 +19,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.util.Date;
 import java.util.List;
 
 
@@ -155,6 +158,20 @@ public class PersonnelController extends BaseController{
 		return "provincialPersonnelList";
 	}
 
+	@RequestMapping(value="/basePersonnelList")
+	public String basePersonnelList(HttpServletRequest request, HttpServletResponse response){
+		List<TecentAreaInfo> areaInfoList = tecentAreaInfoService.queryProvinceList();
+		request.setAttribute("provincialList",areaInfoList);
+		String searchUserName = null != request.getParameter("searchUserName") ? request.getParameter("searchUserName") : null;
+		Integer areaId = null != request.getParameter("areaId") ? Integer.valueOf(request.getParameter("areaId")) : 110000;
+		Integer userType = null != request.getParameter("userType") ? Integer.valueOf(request.getParameter("userType")) : UserType.PROVINCEADMIN.CODE;
+		List<PersonnelInfo> personnelList = userInfoService.personnelList(areaId,searchUserName,userType);
+		request.setAttribute("userBaseId",super.getUser(request).getBaseId());
+		request.setAttribute("personnelList",personnelList);
+		request.setAttribute("userType",userType);
+		return "baseProvincialPersonnelList";
+	}
+
 	@RequestMapping(value="/personnelListSearch", method= RequestMethod.POST)
 	@ResponseBody
 	public  PageHelper<PersonnelInfo> personnelListSearch(HttpServletRequest request, HttpServletResponse response){
@@ -185,6 +202,32 @@ public class PersonnelController extends BaseController{
 		if(null != userInfo){
 			return "fail";
 		}
+		return "succeed";
+	}
+
+	/**
+	 * 跳转添加
+	 * @param request
+	 * @param response
+	 * @return
+	 */
+	@RequestMapping(value="/baseInfoAdd")
+	public String baseInfoAdd(HttpServletRequest request, HttpServletResponse response){
+		//默认展示一周
+//		String beginTime = DateUtil.format(new Date(), "yyyy/MM/dd");
+//		String endTime = DateUtil.format(DateUtil.getDate(new Date(), 6), "yyyy/MM/dd");
+		request.setAttribute("proviceList", AreaManage.getProviceList());
+		return "baseAdd";
+	}
+
+	@RequestMapping(value="/baseInfoInsert")
+	@ResponseBody
+	public String baseInfoInsert(HttpServletRequest request, HttpServletResponse response){
+		String baseName = request.getParameter("baseName");
+		Integer province = Integer.valueOf(request.getParameter("province"));
+		Integer city = Integer.valueOf(request.getParameter("city"));
+		Integer county = Integer.valueOf(request.getParameter("county"));
+		basesService.addBaseInfo(baseName,province,city,county);
 		return "succeed";
 	}
 }

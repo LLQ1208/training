@@ -60,7 +60,7 @@ function checkout() {
             if(pager =="succeed"){
                 console.log("--------------")
                 submitInfo();
-            }else{
+            }else if(pager == -1){
                 alert("该同学已经评价过");
             }
         },

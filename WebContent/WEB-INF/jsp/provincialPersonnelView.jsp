@@ -17,39 +17,35 @@
 </head>
 <body>
 <div class="box clearfix">
-    <div class="nav fl clearfix">
-        <div class="user clearfix">
-            <div class="usericon">
-            </div>
-            <span>总管理员</span>
-        </div>
-        <div class="list">
-            <div></div>
-        </div>
-    </div>
+    <div class="nav fl clearfix" style="width: 151px;">
+        <jsp:include page="menu.jsp" flush="false" >
+            <jsp:param value="personnelAdd" name="menuName"/>
+            <jsp:param value="1" name="group"/>
+        </jsp:include>
 
     <div class="container-box">
         <div class="list-block">
-            <div class="common">
-                <span class="common-title">地区：</span>
+            <div class="common clearfix">
+                <span class="common-title fl">地区：</span>
                 <select name="" class="choose" id="proviceId" readonly="true">
                         <option id="viewProvice" value="viewProvice">${areaName}</option>
                 </select>
             </div>
-            <div class="common">
-                <span class="common-title">管理员：</span>
-                <select name="" class="choose" readonly="true">
-                    <option value="">省级管理员</option>
-                </select>
+            <div class="common clearfix">
+                <span class="common-title fl">管理员：</span>
+                <input id="managerId" readonly value="省级管理员">
+                <%--<select name="" class="choose" readonly="true">--%>
+                    <%--<option value="">省级管理员</option>--%>
+                <%--</select>--%>
             </div>
-            <div class="common" id="baseList" >
-                <span class="common-title">基地列表：</span>
+            <div class="common clearfix" id="baseList" >
+                <span class="common-title fl">基地列表：</span>
                 <select name="" class="choose" id="baseListId" disabled:true>
                     <option id="viewBase" value="viewProvice">${baseName}</option>
                 </select>
             </div>
-            <div class="common">
-                <span class="common-title">账号：</span>
+            <div class="common clearfix">
+                <span class="common-title fl">账号：</span>
                 <input type="text" readonly id="userName" value="${userName}">
             </div>
             <%--<div class="common">--%>
